@@ -14,13 +14,20 @@ class Control:
 		self.all_button_bits = [0]#tuple(rot_bits, swi_bits)
 		self.rot_switch_pos =  [0]#tuple(rot_pos),tuple(swi_pos)
 		if self.rot_bit_list == []:
-			self.rot_bit_list = np.array([[5,13,21,29],[6,14,22,30],[7,15,23,31]])
-	def set_rot_bits(self,filename):
+			self.rot_bit_list = np.array([[5,13,21,29], [6,14,22,30], [7,15,23,31]])
+	def set_rot_bits_from_file(self, filename):
 		try:
-			self.rot_bit_list = np.loadtxt(filename)
+			self.rot_bit_list = np.loadtxt(filename, delimiter = ",")
 			return 1
 		except Exception as e:
 			print(e,"unable to load rot but bit list")
+			return 0
+	def set_swi_bits_from_file(self, filename):
+		try:
+			self.swi_bit_list = np.loadtxt(filename, delimiter = ",")
+			return 1
+		except Exception as e:
+			print(e,"unable to load swi but bit list")
 			return 0
 
 		
