@@ -3,16 +3,27 @@ import numpy as np
 import operator
 
 class Control:
-	def __init__(self,ctrl_id = 'USB1',but_dict_file = None,separating_bit = 35,swi_bit_list = [],button_ids = ["R0","R1","R2","S0","S1","S2"]):
+	def __init__(self,ctrl_id = 'USB1',but_dict_file = None,separating_bit = 35,swi_bit_list = [],rot_bit_list = [],button_ids = ["R0","R1","R2","S0","S1","S2"]):
 		self.ctrl_id = ctrl_id
 		self.separating_bit = separating_bit
 		self.but_dict_file = but_dict_file
 		self.button_dict = dict()
 		self.swi_bit_list = swi_bit_list
+		self.rot_bit_list = rot_bit_list
 		self.button_ids = button_ids
 		self.all_button_bits = [0]#tuple(rot_bits, swi_bits)
 		self.rot_switch_pos =  [0]#tuple(rot_pos),tuple(swi_pos)
+		if self.rot_bit_list == []:
+			self.rot_bit_list = np.array([[5,13,21,29],[6,14,22,30],[7,15,23,31]])
+	def set_rot_bits(self,filename):
+		try:
+			self.rot_bit_list = np.loadtxt(filename)
+			return 1
+		except Exception as e:
+			print(e,"unable to load rot but bit list")
+			return 0
 
+		
 	def add_button(self, button_id):
 		self.button_dict[button_id] = Button(identifier = button_id)
 	def add_buttons(self,button_ids = None):
@@ -58,7 +69,7 @@ class Control:
 		if use_dict == True:
 			rot_pos = self.but_bit_dict[rot_bits]
 		else:
-			button_bits = np.array([[5,13,21,29],[6,14,22,30],[7,15,23,31]])
+			button_bits = self.rot_bit_list#np.array([[5,13,21,29],[6,14,22,30],[7,15,23,31]])
 			rot_pos = [0,0,0]
 			for _b in rot_bits:
 				i,ans = np.where(button_bits == _b)
