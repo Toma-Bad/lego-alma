@@ -98,19 +98,32 @@ class Observatory:
 			antenna positions (e.g. '/dev/ttyUSB0') and the
 			names of the BLE tags (e.g. 'DW12345')
 
+		
 		"""
 		self._read_source_list = src_list
 		
 	def set_ant_pos(self,last_measurements):
+		"""Description
+		==============
+		Sets the antenna positions using the hardware data. Updates
+		the antenna positions in units of length along the East West (EW), North South (NS) axes,
+		and in cartesian coordinates.
+		Arguments
+		---------------
+		last_measurements : dict 
+			Contains the measurements from the USB and Bluetooth channels (antenna positions from 
+			pads on the table and antenna positions from bluetooth devices)
+		"""
 		pos = [[],[]]
 		try:
 			for src in self._read_source_list:
 				if 'USB' in src:
 					bit_array = last_measurements[src]
+					#if only one antenna don't bother
 					if len(bit_array)<1:
 						bit_array = [0]
-					print(bit_array)
-					print(np.array([np.array(self._ant_bit_dict[bit]) for bit in bit_array]).T,"##################################")
+					#print(bit_array)
+					#print(np.array([np.array(self._ant_bit_dict[bit]) for bit in bit_array]).T,"##################################")
 					pos = np.hstack([pos,np.array([np.array(self._ant_bit_dict[bit]) for bit in bit_array]).T])
 				if 'DW' in src:
 					try:
@@ -127,6 +140,21 @@ class Observatory:
 		self.ant_pos_Z = self.ant_pos_NS * np.cos(self.latitude)
 
 	def set_3pos_tag_single(self,last_measurements,tag_id):
+		"""Description
+		==============
+		Measures the time averaged position of one BLE tag in three different places, used 
+		later to match the BLE coordinate system to that of the table.
+		Arguments
+		--------------
+		last_measurements : dict
+			the measurements dict
+		tag_id : str
+			the ID of the tag whose position is to be measured
+		Returns
+		--------------
+		List of shape length 2 : float
+			a 2D vector repr the pposition of the tag
+		"""
 		X_vecs = []
 		print("Aligning tags with ALMA")
 		for ii in ['red','orange','green']:
@@ -150,6 +178,26 @@ class Observatory:
 		print(X_vecs)
 		self.X_vecs = X_vecs
 	def set_3pos_tag_all(self,last_measurements,tag_ids):
+		"""Description
+		==============
+		Measures the time averaged position of three BLE tags in three different places, used 
+		later to match the BLE coordinate system to that of the table.
+		Arguments
+		--------------
+		last_measurements : dict
+			the measurements dict
+		tag_ids : list 
+			the list of tag IDs (strings) of the tags whose position is to be measured
+
+		sets X_vecs parameter to List of shape (3,2) : float
+			a list of 3 2D vectors repr. the positions of three antennas 
+
+		
+		Returns : 
+		-------------
+		X_vecs
+			"""
+
 		X_vecs = []
 		print("Aligning tags with ALMA")
 		input("Place tag "+str(tag_ids)+" at the red, orange, and green pads, respectively, and press Enter")
@@ -172,9 +220,25 @@ class Observatory:
 		X_vecs = temp_vec
 		print(X_vecs)
 		self.X_vecs = X_vecs
+		return X_vecs
 
 	
 	def set_transform(self,X=None):
+		"""
+		Description
+		===============
+		Calculate the matrix transform needed to convert the position
+		Arguments
+		---------------
+		X : list
+			a list of three 2D position vectors, on default use X_vecs attribute
+		Returns
+		---------------
+		1 : int
+			on success, sets the A and b parameters to a 2D matrix representing a linear
+			map and b representing a bias, which together take the coordinates of the BLE
+			tags into the loaded alma coordinates using an equation of the type Y = A X + B
+		"""
 		if X==None:
 			X = self.X_vecs
 			x1,x2,x3 = X
@@ -189,10 +253,27 @@ class Observatory:
 			B = Y12 - np.matmul(A,X12)
 			self.A=A
 			self.b=B.T[0]
+			return 1
 		except Exception as e:
 			print("can't get matrix transform:",e)
+			return 0
 			
 	def transform_query(self,last_measurements,tag_id):
+		"""Description
+		==============
+		Function which interacts with the users and either starts the position calibration process
+		to get the transform between the BLE coordinates and ALMA coordinates, or loads a saved transform from file.
+
+		Arguments
+		---------
+		last_measurements : dict
+			measurements dict
+		tag_id : list
+			list of tag ids
+		Returns
+		---------
+
+		"""
 		ans = input("Perform tag to ALMA position calibration?(y) load from disk? (l) don't use tags! (n) quit (q)")
 		if ans == "y" and type(tag_id) == str:
 			self.set_3pos_tag_single(last_measurements,tag_id)
@@ -221,14 +302,34 @@ class Observatory:
 			self.vlbi_mode = False
 			#quit()
 	def apply_transform(self,x,A=None,b=None):
+		"""Description
+		==============
+		Performs the transformation from BLE tag coordinates into ALMA
+		coordinates.
+		Arguments
+		---------
+		x : Array (2) floats
+			position of a tag
+		A : Array (2,2) floats
+			linear map
+		b : Array (2,) floats
+			bias vector
+		Returns
+		--------
+		y : Array (2) floats
+			the position of the BLE tag in ALMA coordinates vector
+		
+		"""
 		if A == None:
 			A = self.A
 		if b == None:
 			b = self.b
-		return A@x + b
+		y = A@x + b
+		return y 
 
 
 	def set_raw_ant_pos_from_ble(self,ble_data):
+		#obsolete
 		self.ant_pos_ble = np.array([pos for pos in ble_data.values()]).T
 	#def merge_ant_pos(self):
 	#	self.ant_pos = np.hstack([self.ant_pos_ser,self.ant_pos_ble])
@@ -236,8 +337,16 @@ class Observatory:
 	#	self.ant_pos_NS = self.ant_pos[1]
 		
 	def make_baselines(self):
+		"""Description
+		==============
+		Sets (Calculates) baselines based on the positions of the Cartesian coordinates of the antennas. The results are in meters.
+		The baselines are stored in the BX, BY, BZ attributes.
+		Arguments: None
+		Returns: None
+		"""
 		nant = len(self.ant_pos_X)	
 		res = np.zeros((3,nant,nant))
+		#if only one antenna don't bother... 
 		if nant > 1:
 			for i in range(nant):
 				for j in range(nant):
@@ -250,6 +359,17 @@ class Observatory:
 
 		
 	def get_baselines(self):
+		"""Description
+		==============
+		Gets the baseline values that have been calculated already
+		Arguments: 
+		----------
+		None
+		Returns:
+		----------
+		Array (3,N,N) : floats (meters)
+			where N is the number of antennas active
+		"""
 		try:
 			return self.BX,self.BY,self.BZ
 		except Exception as e:
@@ -258,15 +378,42 @@ class Observatory:
 global_frame = 0
 class SkyImage:
 	def __init__(self,path="./models/",filename="galaxy_lobes.png",declination = -90 * u.deg,pixel_size = 0.3 * u.arcsec):
+		"""Description
+		==============
+		Initializes the SkyImage object, the image representation of an astronomical target. 
+		Arguments
+		---------
+		path : str
+			path to the folder with images
+		filename : str
+			name of the file containing the image
+		declination : float (u.deg)
+			declination in degrees with units
+		pixel_size : float (u.arcsec)
+			size of a pixel in arcseconds
+		"""
 		self.path = path
 		self.filename = filename
 		self.pixel_size = pixel_size
 		self.declination = declination
+		#used for webcam mode and to keep track if an image has changed
 		self._webcam_mode = False
 		self._loaded_img = False
 	def load_image(self,path = None,filename = None,new_size = (480,480),video_stream = None):
-		"""Load image data, for ease of use with real fourier transforms we make the sizes of the images, in pixels, odd.
+		"""Description
+		==============
+		Load and process image data into memory. Sets the data attribute to an image value, 
+		or to a video stream. Sets the size of the image, imsize_Y,imsize_X attributes
+		Arguments
+		-----------
+		path : str
+		filename : str
+		new_size : (float,float) 
+			sets the size in pixels of the image in memory
+		video_stream : video stream from cv2, default none
+			the video stream from cv2 when using webcam
 		"""
+		#set this flag to true, we've changed to a new image or image source
 		self._loaded_img = True
 		if path is None: 
 			path = self.path
@@ -277,13 +424,18 @@ class SkyImage:
 		else:
 			self.filename = filename
 		if "Misc4.jpg" in filename:
+			#if this above image is selected, we go into webcam mode, and the 
+			#data parameter is set to the video stream, the webcam mode attribute
+			#is set to true.
+
 			self._webcam_mode = True
-			global global_frame
-			print(global_frame,"load_image")
-			global_frame+=1
+			#global global_frame
+			#print(global_frame,"load_image")
+			#global_frame+=1
 			try:
 				self.data = video_stream
-				print(self.data.shape,"####")
+				#some fuckery for the old fourier transform mode, it works but 
+				#probablyt not needed anymore
 				if self.data.shape[1] % 2 == 0:
 					self.data=np.hstack([self.data,[[0],]*self.data.shape[0]])
 				if self.data.shape[0] % 2 == 0:
@@ -294,6 +446,9 @@ class SkyImage:
 				logging.exception(e,"antpos"+str(traceback.format_exc()))
 			
 		else:
+			#if not the above image name, we're not in webcam mode
+			#image is opened and loaded from disk, converted to monochrome
+
 			self._webcam_mode = False
 			try:
 				im = Image.open(path+filename)
@@ -309,23 +464,32 @@ class SkyImage:
 			except Exception as e:
 				print(e,self.path,self.filename,path,filename,"imageerror.")
 	def make_invert(self,video_stream = None):
-		"""Fourier transforms of the image using the real fft"""
+		"""Description
+		==============
+		Does the Fourier transform of the image, i.e. the data attribute, can be static or video source
+		and sets it as the fft_data. Also sets the sizes of the fft image as fftsize_X and fftsize_Y
+		Only if the image that was loaded is new.
+		"""
 		if self._loaded_img is True:
-			global global_frame
-			print(global_frame,"inver_image")
-			global_frame+=1
+			#if we've just loaded a new image then perform the fft on it.
+			
 
-			#self.fft_data_r = np.fft.rfft2(self.data)
-			#self.fft_data = np.zeros(self.data.shape)+0.j
-			#since we use the real fft, we only need expand the data to build the full fft,
-			#knowing that the fft or a real valued array is Hermitian-symmetric
-			#this is done so we can plot it nicely when needed
-			#self.fft_data[:,:self.fft_data_r.shape[1]] = self.fft_data_r
-			#self.fft_data[:,self.fft_data_r.shape[1]:] = np.conjugate(np.roll(self.fft_data_r[::-1,:0:-1],1,axis=0)) 
+			#global global_frame
+			#print(global_frame,"inver_image")
+			#global_frame+=1
+			
 			self.fft_data = np.fft.ifftshift(np.fft.fft2(self.data))
 			self.fftsize_X,self.fftsize_Y = self.fft_data.shape
+			
+			#now that the image has been loaded, set the _loaded_img flag to false. Calling this funciton
+			#again on the same image will not perform the costly fft.
 			self._loaded_img = False
 		else:
+			#if a new image has not been loaded
+			#but we're in webcam mode, then the image is changing anyway
+			#since it's a video stream, so do the ffft on the video_stream
+			#for some reason it's loading it again. Need to check if this is right
+			#(but it works) Might explain the smoother run when webcam is selected...
 			if self._webcam_mode is True:
 				self.load_image(video_stream = video_stream)
 class Observation:
@@ -419,6 +583,7 @@ class Observation:
 		#print("loaded: ",self.SkyImage._loaded_img,"webmode: ",self.SkyImage._webcam_mode)
 
 	def update_obs(self,last_measurements = None,obs_frequency = 180*u.GHz,HA_START=Angle(-4,u.hour),HA_END=Angle(4,u.hour),sample_freq=0.05*u.Hz,EL_LIMIT = 10 * u.deg):
+		#obsolete
 		self.obs_frequency = obs_frequency
 		self.obs_lam = C.c / obs_frequency
 		self.sample_freq = sample_freq
