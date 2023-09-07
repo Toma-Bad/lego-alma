@@ -247,6 +247,7 @@ class Observatory:
 		try:
 			X12 = np.array([x1,x2]).T
 			X23 = np.array([x2,x3]).T
+			#these will need to be changed, based on old values, hard coded bcs it's easy and shouldn't matter...
 			Y12 = np.array([[-52.5,-32.0],[53.0,-48.5]]).T
 			Y23 = np.array([[53,-48.5],[3.5,10.0]]).T
 			A = np.matmul((Y12-Y23),np.linalg.inv(X12-X23))
@@ -493,37 +494,49 @@ class SkyImage:
 			if self._webcam_mode is True:
 				self.load_image(video_stream = video_stream)
 class Observation:
+	"""Obvservation class, bringing together the Observatory, SkyImage, Control objects,
+	and all the parameters that are set during the observation. It coordinates everything,
+	making sure to get updated antenna positions from observatory, update images from SkyImage,
+	and control commands from Control. Based on inputs from these objects, it sets the other 
+	parameter values, and advances the simulation, calculating uv 
+	coverage, doing gridding, masking, applying fourier transforms and the inverse ft. 
+	"""
 	def __init__(self,Observatory,SkyImage,Control,obs_frequency = 180*u.GHz,HA_START=Angle(-4,u.hour),HA_END=Angle(4,u.hour),sample_freq=0.05*u.Hz,EL_LIMIT = 10 * u.deg,var_dic = None):
-		self.obs_frequency = obs_frequency
-		self.obs_lam = C.c / obs_frequency
-		self._buf_obs_frequency = obs_frequency
-		self.HA_START = HA_START
-		self.HA_END = HA_END
-		self._buf_HA_START = HA_START
-		self._buf_HA_END = HA_END
-		self._buf_declination = 90*u.deg
-		self.sample_freq = sample_freq
-		self._buf_sample_freq = sample_freq
-		self._buf_image_filename = None
-		self.Observatory = Observatory
-		self.SkyImage = SkyImage
-		self.SkyImage.make_invert()
-		self.N_samples = int(((self.HA_END - self.HA_START).hour * u.hour * sample_freq ).decompose() ) + 1
-		self.EL_LIMIT = EL_LIMIT
-		self.Control = Control
-		self.var_dic = var_dic
-		self.rot_varname = None
-		self.rot_value = None
+		self.obs_frequency = obs_frequency #observing freq u.GHz
+		self.obs_lam = C.c / obs_frequency #wavelength from freq u.length
+		self._buf_obs_frequency = obs_frequency #buffer used when switching with buttons.
+		self.HA_START = HA_START #start of observations in HA u.angle
+		self.HA_END = HA_END #end of obs in HA u.angle
+		self._buf_HA_START = HA_START #buffer for HA selecting 
+		self._buf_HA_END = HA_END #uunused for HA selection
+		self._buf_declination = 90*u.deg #buffer for dec
+		self.sample_freq = sample_freq #how often we sample? given in Hz, use low values (0.05 or lower)
+		self._buf_sample_freq = sample_freq #buffer for sample freq, not used 
+		self._buf_image_filename = None #buffer for image filename
+		self.Observatory = Observatory #connect the observatory object to the observation
+		self.SkyImage = SkyImage #connect the image object to the obsergvation
+		self.SkyImage.make_invert() #apply inversion at start
+		self.N_samples = int(((self.HA_END - self.HA_START).hour * u.hour * sample_freq ).decompose() ) + 1 #num samples based on sample freq and int time
+		self.EL_LIMIT = EL_LIMIT #elevation limit coz telescopes can't look into the ground or even in low atm, u.deg
+		self.Control = Control #connect control object to the observation - this deals with the button positions and selection
+		self.var_dic = var_dic #dictionary controlling what values are assigned to variables by button position
+		self.rot_varname = None #idk
+		self.rot_value = None #whatever
 	def set_read_source_ids(self,src_list):
 		"""Set which USB connection will be used for reading the commands (control) for the observation parameters
 		"""
-		self.Control.ctrl_id = src_list[0]
+		self.Control.ctrl_id = src_list[0] #which key in the measured values dic corresponds to commands from the controls
 	
 	
 	def set_var_dic(self,var_dic):
-		self.var_dic = var_dic
+		self.var_dic = var_dic #so var_dic can be set to something else
 
 	def _return_val_button(self,but_pos,var_dic):
+		"""Description
+		==============
+		Return the variable name and its assigned value from button positions, using var_dic
+
+		"""
 		r0,r1,r2,s1,s2,s3 = tuple([but_pos[_bid].get_state() for _bid in self.Control.button_ids])
 		varname = var_dic[r0][0][r1]
 		value = var_dic[r0][1][r1][0](var_dic[r0][1][r1][1],var_dic[r0][2][r1][r2])
@@ -533,6 +546,13 @@ class Observation:
 		return varname, value
 	
 	def update_obs_from_control(self,last_measurements,video_stream = None):
+		"""Set buffer variables - which are parameters of this object to values selected
+		from button positions. If switch S0 is on, then copy the buffer to its actual 
+		variable. So if a certain value for "hr_angle" is selected from button position (rotary ones here)
+		And S0 is off, then save that value to the buffer _buf_HA_END and _buf_HA_START. If S0 is on (1) then set that value to the 
+		corresponding variable, parameter HA_END and HA_START
+
+		"""
 		try:
 			but_pos = self.Control.get_state(last_measurements)
 			#print("but pos", but_pos,tuple([but_pos[_bid].get_state() for _bid in self.Control.button_ids])
@@ -646,11 +666,12 @@ class Observation:
 		#get the pairs of u,v samples and count how many times they appear in a cell (weights)
 
 		if len(self.Observatory.ant_pos_X) > 1:
+			#the masking, for each UV sample in a given UV cell onthe grid, add one to that cell value, and then save all results
 			uv_unique = np.unique((self.u[(self.u >0) & (self.v > 0) & (self.u < self.UVC.shape[0]) & (self.v < self.UVC.shape[1])]+self.v[(self.u >0) & (self.v > 0) & (self.u < self.UVC.shape[0]) & (self.v < self.UVC.shape[1])]*1.j),return_counts= True)
 			self.uv_u = uv_unique
 			if weights == "uniform": #for uniform weights they all have the same value
 				self.UVC[np.real(uv_unique[0]).astype(int),np.imag(uv_unique[0]).astype(int)] = 1
-			if weights == "natural": #for natural weights they are proportional to the sampling density
+			if weights == "natural": #for natural weights they are proportional to the sampling density in each UV cell
 				self.UVC[np.real(uv_unique[0]).astype(int),np.imag(uv_unique[0]).astype(int)] = uv_unique[1] 
 
 			#self.UVC[self.u[(self.u >0) & (self.v > 0) & (self.u < self.UVC.shape[0]) & (self.v < self.UVC.shape[1])],self.v[(self.u >0) & (self.v > 0) & (self.u < self.UVC.shape[0]) & (self.v < self.UVC.shape[1])]]=1

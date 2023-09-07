@@ -48,31 +48,8 @@ if __name__ == "__main__":
 	test_conns = True
 	logging.basicConfig(filename='lego_alma.log')
 	with Manager() as manager:
-		ser_conn_0 = {'path':'/dev/ttyUSB0','baud':19200,'timeout':1,'parity':serial.PARITY_NONE,'rtscts':False}
-		ser_conn_1 = {'path':'/dev/ttyUSB1','baud':19200,'timeout':1,'parity':serial.PARITY_NONE,'rtscts':False}
-		ble_conn = 0x66ce
-#		fig,ax = plt.subplots()
-#		(ln,) = ax.plot([-100,100],[-100,100],color='blue',marker = "o",linestyle='None',animated = True)
-#		current_ranges = np.array([ax.get_xlim(),ax.get_ylim()])
-#		print(current_ranges)
-#		bm = BlitManager(fig.canvas, [ln,])
-		d00 = [-6,-3,0,+3]
-		d01 = [0,1,2,3]
-		d10 = [-80,-50,-30,-10]
-		d11 = [0,5,15,20]
-		d20 = [0.2,1,50,500]
-		d210 = [1,2,3,12]
-		d211 = [0,50,100,250]
-		d30 = ['Galaxy','Planet','BH','Misc']
-		d31 = ['1.jpg','2.jpg','3.jpg','4.jpg']
-		var_dic = \
-			{0:[['hr_angle']*4,list(zip([operator.add]*4,d00)),[d01]*4,["[hr]"]*4],
-			 1:[['obj_dec']*4,list(zip([operator.add]*4,d10)),[d11]*4,["[deg]"]*4],
-			 2:[['int_time']*2+ ['obs_freq']*2,list(zip([operator.mul]*2+[operator.add]*2,d20)),[d210]*2+[d211]*2,["[hr]"]*2+["[GHz]"]*2],
-			 3:[['img_file']*4,list(zip([operator.add]*4,d30)),[d31]*4,[" "]*4]}
-			
-		swi_bits = [52,44,36]
-
+		#define the usb connections
+		from la_config import *	
 
 		plt.style.use('dark_background')
 		sleep_time = 0.1
@@ -94,6 +71,8 @@ if __name__ == "__main__":
 		time.sleep(3)
 		#p2.start()
 		#print("Loading BLE, please wait...")
+
+
 		alma = Observatory(ant_pos_bit_file='./ant_pos.2.txt')
 		alma.load_ant_pos_bit_file()
 		#print(last_measurements)
@@ -145,67 +124,27 @@ if __name__ == "__main__":
 		#frequency_list = [1,10,100,200,400,500,1000]
 		#frequency_list = [_*u.GHz for _ in frequency_list]
 		#freq_cycle = itertools.cycle(frequency_list)
-		dec_list = itertools.cycle([_*u.deg for _ in[-50,-30,20]])
 		sleep(0.5)
 
 		time_list = []
 		print("A")	
 		while True:
-			try:
-				#print(last_measurements)
-				#sleep(1)
-				#plt.pause(0.1)
-				#if len(time_list) > 0:
-				#	print((np.asarray(time_list) - np.roll(np.asarray(time_list),1))[1:])
-				#print(last_measurements)
-				#print(alma.ant_pos_EW,alma.ant_pos_NS)
-				#print(obs.Control.all_button_bits,obs.Control.rot_switch_pos)
-				#print(imgobj.declination)
-				try:
-					obs.Observatory.set_ant_pos(last_measurements)
-				except Exception as e:
-					print(e, "error in set ant pos")
-					logging.exception(e,"antpos")
+			try:	
+				#do interferometry stuff
+
+				obs.Observatory.set_ant_pos(last_measurements)
 					
-				try:
-					obs.Observatory.make_baselines()
-				except Exception as e:
-					print(e, "error in make baselines")
-					logging.exception(e,"blines")
-				#time.sleep(0.5)	
-				#print("B")	
-				try:
-					obs.update_obs_from_control(last_measurements,video_stream = video_dict['val'])
-				except Exception as e:
-					print(e, "error in update from controls")
-					logging.exception(e,"contro")
-				#obs.update_obs()#measurements_dict = last_measurements)#,obs_frequency = next(freq_cycle))
-				try:
-					obs.calc_el_curve()
-				except Exception as e:
-					print(e, "error in curve")
-					logging.exception(e,"el curve")
-				try:
-					obs.make_uv_coverage()
-				except Exception as e:
-					print(e, "error in uv cov")
-					logging.exception(e,"uv cov")
-				try:
-					obs.grid_uv_coverage()
-				except Exception as e:
-					print(e, "error in grid")
-					logging.exception(e,"gridding")
-				try:
-					obs.make_masked_arr(weights="uniform")
-				except Exception as e:
-					print(e, "error in masking")
-					logging.exception(e,"masking")
-				try:
-					obs.make_dirty_arr()
-				except Exception as e:
-					print(e, "error in mk dirty")
-					logging.exception(e,"dirty")
-				#print(np.max(obs.dirty_beam),np.min(obs.dirty_beam),np.mean(obs.dirty_beam),np.percentile(obs.dirty_beam,[5,15,50,65,95]))
+				obs.Observatory.make_baselines()
+				obs.update_obs_from_control(last_measurements,video_stream = video_dict['val'])
+				obs.calc_el_curve()
+				obs.make_uv_coverage()
+				obs.grid_uv_coverage()
+				logging.exception(e,"gridding")
+				obs.make_masked_arr(weights="uniform")
+				obs.make_dirty_arr()
+				
+				#updat plots
+
 				dm.update_ant_plot((obs.Observatory.ant_pos_EW,obs.Observatory.ant_pos_NS))
 				dm.update_ant_proj_plot((obs.Observatory.ant_pos_EW,obs.Observatory.ant_pos_NS),
 						obs.Observatory.latitude,
@@ -240,8 +179,10 @@ if __name__ == "__main__":
 				except SystemExit:
 					os._exit(130)
 			except Exception as e:
-				print("error! wtf?",e)
-				print(traceback.format_exc())
+				trace = traceback.format_exc()
+				print(e,"mainloop!!!!!!",trace)
+				logging.exception(e,str(trace))
+
 				p0.terminate()
 				p1.terminate()
 				#p2.terminate()
