@@ -48,7 +48,7 @@ if __name__ == "__main__":
 	test_conns = True
 	logging.basicConfig(filename='lego_alma.log')
 	with Manager() as manager:
-		#define the usb connections
+		#define the connections initialize readers and vars
 		from la_config import *	
 
 		plt.style.use('dark_background')
@@ -60,7 +60,8 @@ if __name__ == "__main__":
 
 		last_measurements = manager.dict()
 		video_dict = manager.dict()
-		#ser0_controller._loop_read(last_measurements,ser_conn_0,'ser')
+
+		#start processes to read the data 
 		p0 = Process(target = ser0_controller._loop_read,args = (last_measurements,ser_conn_0,'ser'),kwargs={'verbose':False})
 		p1 = Process(target = ser1_controller._loop_read,args = (last_measurements,ser_conn_1,'ser'),kwargs={'verbose':False})
 		pv = Process(target = vid_controller.read_vid,args  = (video_dict,))
@@ -72,10 +73,9 @@ if __name__ == "__main__":
 		#p2.start()
 		#print("Loading BLE, please wait...")
 
-
+		#initialize observatory
 		alma = Observatory(ant_pos_bit_file='./ant_pos.2.txt')
 		alma.load_ant_pos_bit_file()
-		#print(last_measurements)
 		ant_usb_id,ctrl_usb_id = id_usb_conn(last_measurements)
 		src_list = [ant_usb_id]#,'DW4F0B','DWD900']#,'DW4F0B','DW5293','DW912D','DWD900']
 		ctrl_list = [ctrl_usb_id]
@@ -87,25 +87,29 @@ if __name__ == "__main__":
 			
 		alma.set_ant_pos(last_measurements)
 		alma.make_baselines()
+		
+		#initialize the first image
 		imgobj = SkyImage(path = "./models/",filename = "galaxy_lobes.png")
 		imgobj.load_image()
 		imgobj.make_invert()
+
+		#initialize the buttons
 		cont = Control(ctrl_id = ctrl_usb_id)
 		cont.add_buttons()
 		cont.set_but_bit_dict_file("but_dict.pickle")
 		cont.load_but_bit_dict()
 		cont.set_swi_bit_list(swi_bits)
 		cont.get_state(last_measurements)	
-		obs = Observation(alma,imgobj,cont,obs_frequency = 200*u.GHz,var_dic = var_dic)
 
-		#obs.set_read_source_ids(ctrl_usb_id)
-		
+		#initialize the observation
+		obs = Observation(alma,imgobj,cont,obs_frequency = 200*u.GHz,var_dic = var_dic)
 		obs.calc_el_curve()
 		obs.make_uv_coverage()
 		obs.grid_uv_coverage()
 		obs.make_masked_arr()
 		obs.make_dirty_arr()
-		#print("A")	
+		
+		#initialize the display manager and plots to start blitting
 		dm = DisplayManager()
 		dm.setup_main_figure()
 		dm.init_ant_plot(maxoffset = 120)
@@ -128,12 +132,12 @@ if __name__ == "__main__":
 
 		time_list = []
 		print("A")	
+
+		#start the main loop
 		while True:
 			try:	
 				#do interferometry stuff
-
 				obs.Observatory.set_ant_pos(last_measurements)
-					
 				obs.Observatory.make_baselines()
 				obs.update_obs_from_control(last_measurements,video_stream = video_dict['val'])
 				obs.calc_el_curve()
@@ -143,7 +147,7 @@ if __name__ == "__main__":
 				obs.make_masked_arr(weights="uniform")
 				obs.make_dirty_arr()
 				
-				#updat plots
+				#update plots
 
 				dm.update_ant_plot((obs.Observatory.ant_pos_EW,obs.Observatory.ant_pos_NS))
 				dm.update_ant_proj_plot((obs.Observatory.ant_pos_EW,obs.Observatory.ant_pos_NS),
@@ -167,7 +171,7 @@ if __name__ == "__main__":
 				#obs.calc_el_curve()
 				#plt.show()
 	
-			except KeyboardInterrupt:
+			except KeyboardInterrupt: #to exit
 				p0.terminate()
 				p1.terminate()
 				#p2.terminate()
@@ -178,7 +182,7 @@ if __name__ == "__main__":
 					sys.exit(130)
 				except SystemExit:
 					os._exit(130)
-			except Exception as e:
+			except Exception as e: #report an error in main loop and exit.
 				trace = traceback.format_exc()
 				print(e,"mainloop!!!!!!",trace)
 				logging.exception(e,str(trace))
