@@ -629,9 +629,7 @@ class Observation:
 
 	def make_uv_coverage(self):
 		"""Calculate the UV coverage using Observatory coordinates, baselines BX and BY, SkyImage (i.e. object) declination, HA values during observation.
-		This function calculates U and V visibility values as skew-symmetric matrices. Element u_ij = - u_ji and v_ij = - v_ji, where i and j represent antenna i and j, repsectively.	
-		This is the result of introducing the 180 degrees (pi) phase shift for each antenna pair, as in a correlating interferometer.
-
+		
 		The returned values are 3d arrays which are the U and V matrices at each time t (corresponding to a single HA value from HA_arr). 
 		"""
 		if len(self.Observatory.ant_pos_X) > 1:

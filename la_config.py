@@ -1,3 +1,4 @@
+import operator
 #dic of values for button positions
 #trying to get the following behaviour
 #first button selects the top level value to be changed

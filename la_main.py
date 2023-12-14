@@ -60,6 +60,9 @@ if __name__ == "__main__":
 
 		last_measurements = manager.dict()
 		video_dict = manager.dict()
+		ser_conn_0 = {'path':'/dev/ttyUSB0','baud':19200,'timeout':1,'parity':serial.PARITY_NONE,'rtscts':False}
+		ser_conn_1 = {'path':'/dev/ttyUSB1','baud':19200,'timeout':1,'parity':serial.PARITY_NONE,'rtscts':False}
+		ble_conn = 0x66ce
 
 		#start processes to read the data 
 		p0 = Process(target = ser0_controller._loop_read,args = (last_measurements,ser_conn_0,'ser'),kwargs={'verbose':False})
@@ -143,7 +146,6 @@ if __name__ == "__main__":
 				obs.calc_el_curve()
 				obs.make_uv_coverage()
 				obs.grid_uv_coverage()
-				logging.exception(e,"gridding")
 				obs.make_masked_arr(weights="uniform")
 				obs.make_dirty_arr()
 				
