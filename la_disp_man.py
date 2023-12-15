@@ -82,6 +82,8 @@ class DisplayManager:
 		self._blit_manager_list = []
 		self._axes = []
 		self._ln_arr = []
+		self._annot_plt = []
+		self._annot_txt = []
 		self.maxoffset = maxoffset
 		self._ind_text = []
 		self._txt = ""
@@ -120,6 +122,8 @@ class DisplayManager:
 					#self._axes[-1].set_box_aspect(1./8)
 		plt.subplots_adjust(left = 0,right=1,bottom=0,top=1,wspace=0, hspace=0.1)	
 		self._ln_arr = [None] * nrows * ncols
+		self._annot_plt = [None] * nrows * ncols
+		self._annot_txt = [None] * nrows * ncols
 		
 
 	def init_ant_plot(self, maxoffset = None, row = 0, col = 0):
@@ -138,6 +142,19 @@ class DisplayManager:
 		self._ln_arr[ii] = ln
 
 		self._txt = self._axes[ii].annotate( "0",(0, 1),xycoords="axes fraction",xytext=(10, -10),textcoords="offset points",ha="left",va="top",animated=True)
+		
+		#line indicating scale
+		#we want to have a line near the top left of the window, with a length given by the data. 
+		#get the position on the vertical:
+		x_pos,y_pos = ax.transData.inverted().transform(ax.transAxes.transform((0.05,0.90)))
+		scale_line_len = 10**int(np.log10(self.maxoffset*1./5))
+		(ln,) = self._axes[ii].plot([x_pos,x_pos+scale_line_len],[y_pos,y_pos],marker = None,color="white",linewidth = 2)
+		self._annot_plt[ii] = ln
+
+
+		x_pos,y_pos = ax.transData.inverted().transform(ax.transAxes.transform((0.05,0.92)))
+		self._annot_txt[ii] = self._axes[ii].text(x_pos,y_pos,"{}".format(scale_line_len))
+
 	
 	def init_ant_proj_plot(self, row = 1, col = 0):
 		maxoffset = self.maxoffset
@@ -153,7 +170,7 @@ class DisplayManager:
 	
 
 	
-	def init_img_plot(self,size=480, row = 0, col = 1):
+	def init_img_plot(self,size=480, row = 0, col = 1,pixel_size = 0.3*u.arcsec):
 		dummy_img = np.zeros((size,size))
 		ii = np.ravel_multi_index((row,col),(self._nrows,self._ncols))
 		im = self._axes[ii].imshow(dummy_img,vmin = 0,vmax = 255,cmap="hot")
@@ -162,6 +179,24 @@ class DisplayManager:
 		self._axes[ii].axes.get_yaxis().set_visible(False)
 		self._ln_arr[ii] = im
 		#print(ii,self._ln_arr[ii],"ini img")
+	
+		#line indicating scale
+		fractional_size = 1./6 #how long is this line as a fraction of the figure?
+		#get the data coords of this line:
+		x_pos,y_pos = ax.transData.inverted().transform(
+				ax.transAxes.transform(
+					[(0.05,0.90),
+					(0.05+fractional_size,0.90)]
+					)
+				).T
+
+		(ln,) = self._axes[ii].plot(x_pos,y_pos,marker = None,color="white",linewidth = 2)
+		self._annot_plt[ii] = ln
+
+		x_pos,y_pos = ax.transData.inverted().transform(ax.transAxes.transform((0.05,0.92)))
+		self._annot_txt[ii] = self._axes[ii].text(x_pos,y_pos,"{:.1f}".format(fractional_size * size * pixel_size))
+
+
 
 	def init_fft_plot(self,size=480, row = 1, col = 1):
 		dummy_img = np.zeros((size+1,size+1))
@@ -172,7 +207,7 @@ class DisplayManager:
 		self._axes[ii].axes.get_yaxis().set_visible(False)
 		self._ln_arr[ii] = im
 
-	def init_uvc_plot(self,size=480, row = 1, col = 2):
+	def init_uvc_plot(self,size=480, row = 1, col = 2,inv_pixel_size = 687549.35 * 1./u.radian):
 		dummy_img = np.zeros((size+1,size+1))
 		ii = np.ravel_multi_index((row,col),(self._nrows,self._ncols))
 		im = self._axes[ii].imshow(dummy_img,vmin = 0,vmax = 1.,cmap="gray")
@@ -181,7 +216,20 @@ class DisplayManager:
 		self._axes[ii].axes.get_yaxis().set_visible(False)
 		self._ln_arr[ii] = im
 
-	def init_dbe_plot(self,size=480,row = 0, col = 2):
+		#line indicating scale
+		#we want to have a line near the top left of the window, with a length given by the data. 
+		#get the position on the vertical:
+		x_pos,y_pos = ax.transData.inverted().transform(ax.transAxes.transform((0.05,0.90)))
+		scale_line_len = 10**int(np.log10(inv_pixel_size*1./5))
+		(ln,) = self._axes[ii].plot([x_pos,x_pos+scale_line_len],[y_pos,y_pos],marker = None,color="white",linewidth = 2)
+		self._annot_plt[ii] = ln
+
+
+		x_pos,y_pos = ax.transData.inverted().transform(ax.transAxes.transform((0.05,0.92)))
+		self._annot_txt[ii] = self._axes[ii].text(x_pos,y_pos,r"{:.0f}k$\lambda$".format(scale_line_len/1000))
+
+
+	def init_dbe_plot(self,size=480,row = 0, col = 2,pixel_size = 0.3*u.arcsec):
 		dummy_img = np.zeros((size+1,size))
 		ii = np.ravel_multi_index((row,col),(self._nrows,self._ncols))
 		#im = self._axes[ii].imshow(dummy_img,vmin = 0.,vmax = 1.,cmap="rainbow")
@@ -189,8 +237,25 @@ class DisplayManager:
 		self._axes[ii].axes.get_xaxis().set_visible(False)
 		self._axes[ii].axes.get_yaxis().set_visible(False)
 		self._ln_arr[ii] = im
+	
+		#line indicating scale
+		fractional_size = 1./6 #how long is this line as a fraction of the figure?
+		#get the data coords of this line:
+		x_pos,y_pos = ax.transData.inverted().transform(
+				ax.transAxes.transform(
+					[(0.05,0.90),
+					(0.05+fractional_size,0.90)]
+					)
+				).T
 
-	def init_dim_plot(self,size=480,row= 0,col = 3):
+		(ln,) = self._axes[ii].plot(x_pos,y_pos,marker = None,color="white",linewidth = 2)
+		self._annot_plt[ii] = ln
+
+		x_pos,y_pos = ax.transData.inverted().transform(ax.transAxes.transform((0.05,0.92)))
+		self._annot_txt[ii] = self._axes[ii].text(x_pos,y_pos,"{:.1f}".format(fractional_size * size * pixel_size))
+
+
+	def init_dim_plot(self,size=480,row= 0,col = 3,pixel_size = 0.3*u.arcsec):
 		dummy_img = np.zeros((size,size))+0.5
 		ii = np.ravel_multi_index((row,col),(self._nrows,self._ncols))
 		#im = self._axes[ii].imshow(dummy_img,vmin = 0.,vmax = 1.,cmap="rainbow")
@@ -198,6 +263,24 @@ class DisplayManager:
 		self._axes[ii].axes.get_xaxis().set_visible(False)
 		self._axes[ii].axes.get_yaxis().set_visible(False)
 		self._ln_arr[ii] = im
+	
+		#line indicating scale
+		fractional_size = 1./6 #how long is this line as a fraction of the figure?
+		#get the data coords of this line:
+		x_pos,y_pos = ax.transData.inverted().transform(
+				ax.transAxes.transform(
+					[(0.05,0.90),
+					(0.05+fractional_size,0.90)]
+					)
+				).T
+
+		(ln,) = self._axes[ii].plot(x_pos,y_pos,marker = None,color="white",linewidth = 2)
+		self._annot_plt[ii] = ln
+
+		x_pos,y_pos = ax.transData.inverted().transform(ax.transAxes.transform((0.05,0.92)))
+		self._annot_txt[ii] = self._axes[ii].text(x_pos,y_pos,"{:.1f}".format(fractional_size * size * pixel_size))
+
+
 	def init_mft_plot(self,size=480,row= 1,col = 3):
 		dummy_img = np.zeros((size,size))
 		ii = np.ravel_multi_index((row,col),(self._nrows,self._ncols))
@@ -242,7 +325,11 @@ class DisplayManager:
 
 
 	def setup_blit_manager(self):
-		artist_list = [_ for _ in self._ln_arr if _ is not None] + self._ind_text + [self._ind_status_text,self._ind_now_setting_text]
+		artist_list = [_ for _ in self._ln_arr if _ is not None] 
+			+ self._ind_text 
+			+ [self._ind_status_text,self._ind_now_setting_text] 
+			+ [_ for _ in self._annot_plt if _ is not None]
+			+ [_ for _ in self._annot_txt if _ is not None]
 		self._blit_manager = BlitManager(self._fig.canvas,artist_list) 
 		print(artist_list)
 		plt.show(block = False)
@@ -267,7 +354,21 @@ class DisplayManager:
 			scale_plot_factor = 2*maxoffset / np.max((np.abs(np.max(data[0]) - np.min(data[0])),np.abs(np.max(data[1]) - np.min(data[1]))))
 		self._ln_arr[ln_ind].set_xdata(xx*scale_plot_factor)
 		self._ln_arr[ln_ind].set_ydata(yy*scale_plot_factor)
-		self._txt.set_text(str(data)+" "+str(scale_plot_factor))  
+		self._txt.set_text(str(data)+" "+str(scale_plot_factor)) 
+
+		#line indicating scale
+		#we want to have a line near the top left of the window, with a length given by the data. 
+		#get the position on the vertical:
+		x_pos,y_pos = ax.transData.inverted().transform(ax.transAxes.transform((0.05,0.90)))
+		scale_line_len = 10**int(np.log10(maxoffset*1./5))
+		self._annot_plt[ln_ind].set_xdata([x_pos, x_pos+scale_line_len])
+		self._annot_plt[ln_ind].set_ydata([y_pos, y_pos])
+
+
+		x_pos,y_pos = ax.transData.inverted().transform(ax.transAxes.transform((0.05,0.92)))
+		self._annot_txt[ln_ind].set_position((x_pos,y_pos))
+		self._annot_txt[ln_ind].set_text(x_pos,y_pos,"{}".format(scale_line_len))
+
 		#self._blit_manager_list[0].update()
 	def update_ant_proj_plot(self,data,observatory_latitude,hrangle,dec,row = 1, col = 0):
 		maxoffset = self.maxoffset
@@ -308,12 +409,24 @@ class DisplayManager:
 		
 		#self._blit_manager_list[ln_ind].update()
 
-	def update_img_plot(self,data,row = 0, col = 1):
+	def update_img_plot(self,data,row = 0, col = 1,pixel_size = 0.3*u.arcsec):
 		ln_ind = np.ravel_multi_index((row,col),self._axes_shape)
 		self._ln_arr[ln_ind].set_array(data)
 		#self._blit_manager_list[ln_ind].update()
 		#print(ln_ind,self._blit_manager_list[ln_ind],"upd img")
-	
+		#line indicating scale
+		fractional_size = 1./6 #how long is this line as a fraction of the figure?
+		#get the data coords of this line:
+		x_pos,y_pos = ax.transData.inverted().transform(
+				ax.transAxes.transform(
+					[(0.05,0.90),
+					(0.05+fractional_size,0.90)]
+					)
+				).T
+		self._annot_plt[ln_ind].set_xdata(x_pos)
+		self._annot_plt[ln_ind].set_ydata(y_pos)
+		self._annot_txt[ln_ind].set_text("{:.1f}".format(fractional_size * data.shape[0] * pixel_size))
+
 	def update_fft_plot(self,data,row = 1, col = 1):
 		ln_ind = np.ravel_multi_index((row,col),self._axes_shape)
 		plt_data = np.log10(np.abs(data))
@@ -324,26 +437,65 @@ class DisplayManager:
 		#print(np.max(np.abs(data)/np.max(np.abs(data))),data.shape)
 		#self._blit_manager_list[ln_ind].update()
 	
-	def update_uvc_plot(self,data,row = 1, col = 2):
+	def update_uvc_plot(self,data,row = 1, col = 2,inv_pixel_size = 687549.35 * 1./u.radian):
 		ln_ind = np.ravel_multi_index((row,col),self._axes_shape)
 		#print(np.max(np.abs(data)))
 		self._ln_arr[ln_ind].set_array(np.abs(data))
 		#self._blit_manager_list[ln_ind].update()
+		#line indicating scale
+		#we want to have a line near the top left of the window, with a length given by the data. 
+		#get the position on the vertical:
+		x_pos,y_pos = ax.transData.inverted().transform(ax.transAxes.transform((0.05,0.90)))
+		scale_line_len = 10**int(np.log10(inv_pixelscale*1./5))
+		self._annot_plt[ln_ind].set_xdata([x_pos, x_pos+scale_line_len])
+		self._annot_plt[ln_ind].set_ydata([y_pos, y_pos])
 
-	def update_dbe_plot(self,data,row = 0, col = 2):
+
+		x_pos,y_pos = ax.transData.inverted().transform(ax.transAxes.transform((0.05,0.92)))
+		self._annot_txt[ln_ind].set_text(r"{:.0f}k$\lambda$".format(scale_line_len/1000))
+
+
+	def update_dbe_plot(self,data,row = 0, col = 2,pixel_size = 0.3*u.arcsec):
 		ln_ind = np.ravel_multi_index((row,col),self._axes_shape)
 		plt_data =np.abs(data)#np.fft.fftshift(data)
 		plt_data = (plt_data - np.min(plt_data)) / (np.max(plt_data) - np.min(plt_data)) #* 2 - 1
 		#plt_data = plt_data - np.mean(plt_data)
 		self._ln_arr[ln_ind].set_array(plt_data)
 		#self._blit_manager_list[ln_ind].update()
-	def update_dim_plot(self,data,row = 0, col = 3):
+		fractional_size = 1./6 #how long is this line as a fraction of the figure?
+		#get the data coords of this line:
+		x_pos,y_pos = ax.transData.inverted().transform(
+				ax.transAxes.transform(
+					[(0.05,0.90),
+					(0.05+fractional_size,0.90)]
+					)
+				).T
+		self._annot_plt[ln_ind].set_xdata(x_pos)
+		self._annot_plt[ln_ind].set_ydata(y_pos)
+		self._annot_txt[ln_ind].set_text("{:.1f}".format(fractional_size * data.shape[0] * pixel_size))
+
+
+	def update_dim_plot(self,data,row = 0, col = 3,pixel_size = 0.3*u.arcsec):
 		ln_ind = np.ravel_multi_index((row,col),self._axes_shape)
 		plt_data = np.abs(data)
 		plt_data = (plt_data - np.min(plt_data)) / (np.max(plt_data) - np.min(plt_data)) #* 2 - 1
 		#plt_data = plt_data - np.mean(plt_data)
 		self._ln_arr[ln_ind].set_array(plt_data)
 		#self._blit_manager_list[ln_ind].update()
+		fractional_size = 1./6 #how long is this line as a fraction of the figure?
+		#get the data coords of this line:
+		x_pos,y_pos = ax.transData.inverted().transform(
+				ax.transAxes.transform(
+					[(0.05,0.90),
+					(0.05+fractional_size,0.90)]
+					)
+				).T
+		self._annot_plt[ln_ind].set_xdata(x_pos)
+		self._annot_plt[ln_ind].set_ydata(y_pos)
+		self._annot_txt[ln_ind].set_text("{:.1f}".format(fractional_size * data.shape[0] * pixel_size))
+
+
+
 	def update_mft_plot(self,data,row = 1, col = 3):
 		ln_ind = np.ravel_multi_index((row,col),self._axes_shape)
 		plt_data = np.abs(data)

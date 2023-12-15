@@ -117,11 +117,13 @@ if __name__ == "__main__":
 		dm.setup_main_figure()
 		dm.init_ant_plot(maxoffset = 120)
 		dm.init_ant_proj_plot()
-		dm.init_img_plot()
+		pixel_size = obs.SkyImage.pixel_size
+		inv_pixel_size = (1./pixel_size).to(1./u.radian)
+		dm.init_img_plot(pixel_size = pixel_size)
 		dm.init_fft_plot()
-		dm.init_uvc_plot()
-		dm.init_dbe_plot()
-		dm.init_dim_plot()
+		dm.init_uvc_plot(inv_pixel_size = inv_pixel_size)
+		dm.init_dbe_plot(pixel_size = pixel_size)
+		dm.init_dim_plot(pixel_size = pixel_size)
 		dm.init_mft_plot()
 		dm.init_ind_plot(var_dic,obs)
 		dm.setup_blit_manager()
@@ -133,8 +135,6 @@ if __name__ == "__main__":
 		#freq_cycle = itertools.cycle(frequency_list)
 		sleep(0.5)
 
-		time_list = []
-		print("A")	
 
 		#start the main loop
 		while True:
@@ -148,7 +148,9 @@ if __name__ == "__main__":
 				obs.grid_uv_coverage()
 				obs.make_masked_arr(weights="uniform")
 				obs.make_dirty_arr()
-				
+				pixel_size = obs.SkyImage.pixel_size
+				inv_pixel_size = (1./pixel_size).to(1./u.radian)
+
 				#update plots
 
 				dm.update_ant_plot((obs.Observatory.ant_pos_EW,obs.Observatory.ant_pos_NS))
@@ -157,17 +159,16 @@ if __name__ == "__main__":
 						obs.HA_START + abs(obs.HA_END - obs.HA_START)/2,
 						obs.SkyImage.declination)
 
-				dm.update_img_plot(obs.SkyImage.data)
+				dm.update_img_plot(obs.SkyImage.data,pixel_size = pixel_size)
 				dm.update_fft_plot(obs.SkyImage.fft_data)
 
-				dm.update_uvc_plot(obs.UVC)
-				dm.update_dbe_plot(obs.dirty_beam)
+				dm.update_uvc_plot(obs.UVC,inv_pixel_size = inv_pixel_size)
+				dm.update_dbe_plot(obs.dirty_beam,pixel_size = pixel_size)
 
-				dm.update_dim_plot(obs.dirty_image)
+				dm.update_dim_plot(obs.dirty_image,pixel_size = pixel_size)
 				dm.update_mft_plot(obs.uv_fft_sampled)
 				dm.update_ind_plot(var_dic,obs)
 				dm.update_blit_manager()
-				time_list.append(time.time())
 				#plt.scatter(alma.ant_pos_EW,alma.ant_pos_NS,c='blue')
 				#obs = Observation(almaobj,imgobj)
 				#obs.calc_el_curve()
