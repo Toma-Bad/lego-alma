@@ -118,7 +118,9 @@ if __name__ == "__main__":
 		dm.init_ant_plot(maxoffset = 120)
 		dm.init_ant_proj_plot()
 		pixel_size = obs.SkyImage.pixel_size
+		print(pixel_size)
 		inv_pixel_size = (1./pixel_size).to(1./u.radian)
+		print(inv_pixel_size)
 		dm.init_img_plot(pixel_size = pixel_size)
 		dm.init_fft_plot()
 		dm.init_uvc_plot(inv_pixel_size = inv_pixel_size)

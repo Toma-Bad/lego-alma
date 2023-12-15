@@ -3,6 +3,7 @@ from matplotlib import colors,cm
 import matplotlib.pyplot as plt
 from astropy.io import ascii
 from matplotlib import colors,cm
+import astropy.units as u
 import operator
 import itertools
 class BlitManager:
@@ -146,14 +147,14 @@ class DisplayManager:
 		#line indicating scale
 		#we want to have a line near the top left of the window, with a length given by the data. 
 		#get the position on the vertical:
-		x_pos,y_pos = ax.transData.inverted().transform(ax.transAxes.transform((0.05,0.90)))
+		x_pos,y_pos = self._axes[ii].transData.inverted().transform(self._axes[ii].transAxes.transform((0.05,0.90)))
 		scale_line_len = 10**int(np.log10(self.maxoffset*1./5))
 		(ln,) = self._axes[ii].plot([x_pos,x_pos+scale_line_len],[y_pos,y_pos],marker = None,color="white",linewidth = 2)
 		self._annot_plt[ii] = ln
 
 
-		x_pos,y_pos = ax.transData.inverted().transform(ax.transAxes.transform((0.05,0.92)))
-		self._annot_txt[ii] = self._axes[ii].text(x_pos,y_pos,"{}".format(scale_line_len))
+		x_pos,y_pos = self._axes[ii].transData.inverted().transform(self._axes[ii].transAxes.transform((0.05,0.92)))
+		self._annot_txt[ii] = self._axes[ii].text(x_pos,y_pos,"{:.0f} m".format(scale_line_len))
 
 	
 	def init_ant_proj_plot(self, row = 1, col = 0):
@@ -183,8 +184,8 @@ class DisplayManager:
 		#line indicating scale
 		fractional_size = 1./6 #how long is this line as a fraction of the figure?
 		#get the data coords of this line:
-		x_pos,y_pos = ax.transData.inverted().transform(
-				ax.transAxes.transform(
+		x_pos,y_pos = self._axes[ii].transData.inverted().transform(
+				self._axes[ii].transAxes.transform(
 					[(0.05,0.90),
 					(0.05+fractional_size,0.90)]
 					)
@@ -193,7 +194,7 @@ class DisplayManager:
 		(ln,) = self._axes[ii].plot(x_pos,y_pos,marker = None,color="white",linewidth = 2)
 		self._annot_plt[ii] = ln
 
-		x_pos,y_pos = ax.transData.inverted().transform(ax.transAxes.transform((0.05,0.92)))
+		x_pos,y_pos = self._axes[ii].transData.inverted().transform(self._axes[ii].transAxes.transform((0.05,0.92)))
 		self._annot_txt[ii] = self._axes[ii].text(x_pos,y_pos,"{:.1f}".format(fractional_size * size * pixel_size))
 
 
@@ -219,13 +220,17 @@ class DisplayManager:
 		#line indicating scale
 		#we want to have a line near the top left of the window, with a length given by the data. 
 		#get the position on the vertical:
-		x_pos,y_pos = ax.transData.inverted().transform(ax.transAxes.transform((0.05,0.90)))
-		scale_line_len = 10**int(np.log10(inv_pixel_size*1./5))
+		x_pos,y_pos = self._axes[ii].transData.inverted().transform(self._axes[ii].transAxes.transform((0.05,0.90)))
+		scale_line_len = 10**int(np.log10(inv_pixel_size.value*1./5))
+		scale_line_len_pix = size * scale_line_len / inv_pixel_size.value
+		print(x_pos,y_pos,scale_line_len,scale_line_len_pix,"###")
+
+
 		(ln,) = self._axes[ii].plot([x_pos,x_pos+scale_line_len],[y_pos,y_pos],marker = None,color="white",linewidth = 2)
 		self._annot_plt[ii] = ln
 
 
-		x_pos,y_pos = ax.transData.inverted().transform(ax.transAxes.transform((0.05,0.92)))
+		x_pos,y_pos = self._axes[ii].transData.inverted().transform(self._axes[ii].transAxes.transform((0.05,0.92)))
 		self._annot_txt[ii] = self._axes[ii].text(x_pos,y_pos,r"{:.0f}k$\lambda$".format(scale_line_len/1000))
 
 
@@ -241,8 +246,8 @@ class DisplayManager:
 		#line indicating scale
 		fractional_size = 1./6 #how long is this line as a fraction of the figure?
 		#get the data coords of this line:
-		x_pos,y_pos = ax.transData.inverted().transform(
-				ax.transAxes.transform(
+		x_pos,y_pos = self._axes[ii].transData.inverted().transform(
+				self._axes[ii].transAxes.transform(
 					[(0.05,0.90),
 					(0.05+fractional_size,0.90)]
 					)
@@ -251,7 +256,7 @@ class DisplayManager:
 		(ln,) = self._axes[ii].plot(x_pos,y_pos,marker = None,color="white",linewidth = 2)
 		self._annot_plt[ii] = ln
 
-		x_pos,y_pos = ax.transData.inverted().transform(ax.transAxes.transform((0.05,0.92)))
+		x_pos,y_pos = self._axes[ii].transData.inverted().transform(self._axes[ii].transAxes.transform((0.05,0.92)))
 		self._annot_txt[ii] = self._axes[ii].text(x_pos,y_pos,"{:.1f}".format(fractional_size * size * pixel_size))
 
 
@@ -267,8 +272,8 @@ class DisplayManager:
 		#line indicating scale
 		fractional_size = 1./6 #how long is this line as a fraction of the figure?
 		#get the data coords of this line:
-		x_pos,y_pos = ax.transData.inverted().transform(
-				ax.transAxes.transform(
+		x_pos,y_pos = self._axes[ii].transData.inverted().transform(
+				self._axes[ii].transAxes.transform(
 					[(0.05,0.90),
 					(0.05+fractional_size,0.90)]
 					)
@@ -277,7 +282,7 @@ class DisplayManager:
 		(ln,) = self._axes[ii].plot(x_pos,y_pos,marker = None,color="white",linewidth = 2)
 		self._annot_plt[ii] = ln
 
-		x_pos,y_pos = ax.transData.inverted().transform(ax.transAxes.transform((0.05,0.92)))
+		x_pos,y_pos = self._axes[ii].transData.inverted().transform(self._axes[ii].transAxes.transform((0.05,0.92)))
 		self._annot_txt[ii] = self._axes[ii].text(x_pos,y_pos,"{:.1f}".format(fractional_size * size * pixel_size))
 
 
@@ -325,13 +330,10 @@ class DisplayManager:
 
 
 	def setup_blit_manager(self):
-		artist_list = [_ for _ in self._ln_arr if _ is not None] 
-			+ self._ind_text 
-			+ [self._ind_status_text,self._ind_now_setting_text] 
-			+ [_ for _ in self._annot_plt if _ is not None]
-			+ [_ for _ in self._annot_txt if _ is not None]
+		
+		artist_list = [_ for _ in self._ln_arr if _ is not None] + self._ind_text + [self._ind_status_text,self._ind_now_setting_text] + [_ for _ in self._annot_plt if _ is not None] + [_ for _ in self._annot_txt if _ is not None]
 		self._blit_manager = BlitManager(self._fig.canvas,artist_list) 
-		print(artist_list)
+		#print(artist_list)
 		plt.show(block = False)
 		plt.pause(0.2)
 	def update_blit_manager(self):
@@ -359,15 +361,15 @@ class DisplayManager:
 		#line indicating scale
 		#we want to have a line near the top left of the window, with a length given by the data. 
 		#get the position on the vertical:
-		x_pos,y_pos = ax.transData.inverted().transform(ax.transAxes.transform((0.05,0.90)))
+		x_pos,y_pos = self._axes[ln_ind].transData.inverted().transform(self._axes[ln_ind].transAxes.transform((0.05,0.90)))
 		scale_line_len = 10**int(np.log10(maxoffset*1./5))
 		self._annot_plt[ln_ind].set_xdata([x_pos, x_pos+scale_line_len])
 		self._annot_plt[ln_ind].set_ydata([y_pos, y_pos])
 
 
-		x_pos,y_pos = ax.transData.inverted().transform(ax.transAxes.transform((0.05,0.92)))
+		x_pos,y_pos = self._axes[ln_ind].transData.inverted().transform(self._axes[ln_ind].transAxes.transform((0.05,0.92)))
 		self._annot_txt[ln_ind].set_position((x_pos,y_pos))
-		self._annot_txt[ln_ind].set_text(x_pos,y_pos,"{}".format(scale_line_len))
+		self._annot_txt[ln_ind].set_text("{:.0f} m".format(scale_line_len))
 
 		#self._blit_manager_list[0].update()
 	def update_ant_proj_plot(self,data,observatory_latitude,hrangle,dec,row = 1, col = 0):
@@ -417,8 +419,8 @@ class DisplayManager:
 		#line indicating scale
 		fractional_size = 1./6 #how long is this line as a fraction of the figure?
 		#get the data coords of this line:
-		x_pos,y_pos = ax.transData.inverted().transform(
-				ax.transAxes.transform(
+		x_pos,y_pos = self._axes[ln_ind].transData.inverted().transform(
+				self._axes[ln_ind].transAxes.transform(
 					[(0.05,0.90),
 					(0.05+fractional_size,0.90)]
 					)
@@ -445,13 +447,15 @@ class DisplayManager:
 		#line indicating scale
 		#we want to have a line near the top left of the window, with a length given by the data. 
 		#get the position on the vertical:
-		x_pos,y_pos = ax.transData.inverted().transform(ax.transAxes.transform((0.05,0.90)))
-		scale_line_len = 10**int(np.log10(inv_pixelscale*1./5))
-		self._annot_plt[ln_ind].set_xdata([x_pos, x_pos+scale_line_len])
+		x_pos,y_pos = self._axes[ln_ind].transData.inverted().transform(self._axes[ln_ind].transAxes.transform((0.05,0.90)))
+		scale_line_len = 10**int(np.log10(inv_pixel_size.value*1./5))
+		scale_line_len_pix = data.shape[0] * scale_line_len / inv_pixel_size.value
+		self._annot_plt[ln_ind].set_xdata([x_pos, x_pos+scale_line_len_pix])
 		self._annot_plt[ln_ind].set_ydata([y_pos, y_pos])
 
+		print(x_pos,y_pos,scale_line_len,scale_line_len_pix,"###")
 
-		x_pos,y_pos = ax.transData.inverted().transform(ax.transAxes.transform((0.05,0.92)))
+		x_pos,y_pos = self._axes[ln_ind].transData.inverted().transform(self._axes[ln_ind].transAxes.transform((0.05,0.92)))
 		self._annot_txt[ln_ind].set_text(r"{:.0f}k$\lambda$".format(scale_line_len/1000))
 
 
@@ -464,8 +468,8 @@ class DisplayManager:
 		#self._blit_manager_list[ln_ind].update()
 		fractional_size = 1./6 #how long is this line as a fraction of the figure?
 		#get the data coords of this line:
-		x_pos,y_pos = ax.transData.inverted().transform(
-				ax.transAxes.transform(
+		x_pos,y_pos = self._axes[ln_ind].transData.inverted().transform(
+				self._axes[ln_ind].transAxes.transform(
 					[(0.05,0.90),
 					(0.05+fractional_size,0.90)]
 					)
@@ -484,8 +488,8 @@ class DisplayManager:
 		#self._blit_manager_list[ln_ind].update()
 		fractional_size = 1./6 #how long is this line as a fraction of the figure?
 		#get the data coords of this line:
-		x_pos,y_pos = ax.transData.inverted().transform(
-				ax.transAxes.transform(
+		x_pos,y_pos = self._axes[ln_ind].transData.inverted().transform(
+				self._axes[ln_ind].transAxes.transform(
 					[(0.05,0.90),
 					(0.05+fractional_size,0.90)]
 					)
