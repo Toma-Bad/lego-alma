@@ -376,7 +376,7 @@ class Observatory:
 		except Exception as e:
 			print(e)
 			return None
-global_frame = 0
+#global_frame = 0
 class SkyImage:
 	def __init__(self,path="./models/",filename="galaxy_lobes.png",declination = -90 * u.deg,pixel_size = 0.3 * u.arcsec):
 		"""Description

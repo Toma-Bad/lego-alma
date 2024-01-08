@@ -126,7 +126,7 @@ if __name__ == "__main__":
 		dm.init_uvc_plot(inv_pixel_size = inv_pixel_size)
 		dm.init_dbe_plot(pixel_size = pixel_size)
 		dm.init_dim_plot(pixel_size = pixel_size)
-		dm.init_mft_plot()
+		dm.init_mft_plot(inv_pixel_size = inv_pixel_size)
 		dm.init_ind_plot(var_dic,obs)
 		dm.setup_blit_manager()
 		#dm.update_ant_plot((alma.ant_pos_EW,alma.ant_pos_NS))
@@ -151,6 +151,7 @@ if __name__ == "__main__":
 				obs.make_masked_arr(weights="uniform")
 				obs.make_dirty_arr()
 				pixel_size = obs.SkyImage.pixel_size
+				#print(f"pixel_size = {pixel_size}")
 				inv_pixel_size = (1./pixel_size).to(1./u.radian)
 
 				#update plots
@@ -168,7 +169,7 @@ if __name__ == "__main__":
 				dm.update_dbe_plot(obs.dirty_beam,pixel_size = pixel_size)
 
 				dm.update_dim_plot(obs.dirty_image,pixel_size = pixel_size)
-				dm.update_mft_plot(obs.uv_fft_sampled)
+				dm.update_mft_plot(obs.uv_fft_sampled,inv_pixel_size = inv_pixel_size)
 				dm.update_ind_plot(var_dic,obs)
 				dm.update_blit_manager()
 				#plt.scatter(alma.ant_pos_EW,alma.ant_pos_NS,c='blue')
