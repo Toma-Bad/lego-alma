@@ -95,10 +95,7 @@ class Observatory:
 		---------------
 		src_list : list of strings
 			Contains the path to the USB connection for the 
-			antenna positions (e.g. '/dev/ttyUSB0') and the
-			names of the BLE tags (e.g. 'DW12345')
-
-		
+			antenna positions (e.g. '/dev/ttyUSB0')		
 		"""
 		self._read_source_list = src_list
 		
@@ -107,7 +104,8 @@ class Observatory:
 		==============
 		Sets the antenna positions using the hardware data. Updates
 		the antenna positions in units of length along the East West (EW), North South (NS) axes,
-		and in cartesian coordinates.
+		and in cartesian coordinates. The antenna positions from the tags are read if they appear
+		in the last measurements dict and applied if vlbi mode is true
 		Arguments
 		---------------
 		last_measurements : dict 
@@ -125,12 +123,14 @@ class Observatory:
 					#print(bit_array)
 					#print(np.array([np.array(self._ant_bit_dict[bit]) for bit in bit_array]).T,"##################################")
 					pos = np.hstack([pos,np.array([np.array(self._ant_bit_dict[bit]) for bit in bit_array]).T])
-				if 'DW' in src:
-					try:
-						pos = np.hstack([pos,self.apply_transform(last_measurements[src][:-1])[np.newaxis].T])
-					except Exception as e:
-						print("set_ant_pos",e)
-						pass
+			if self.vlbi_mode is True: #only if vlbi mode look for ble devices
+				for src in self.last_measurements: #since ble devices can be dynamic on off don't check the source list but the last meas.
+					if src.startswith('DW'):
+						try:
+							pos = np.hstack([pos,self.apply_transform(last_measurements[src][:-1])[np.newaxis].T])
+						except Exception as e:
+							print("set_ant_pos",e)
+							pass
 		except Exception as e:
 			print("error",e,traceback.format_exc())
 			pass
@@ -592,6 +592,10 @@ class Observation:
 			self._buf_image_filename = value
 			if but_pos['S0'].get_state() == 1:
 				self.SkyImage.load_image(filename = self._buf_image_filename,video_stream = video_stream)
+		if but_pos['S2'].get_state() == 1:
+			self.vlbi_mode = True
+		else:
+			self.vlbi_mode = False
 		#if but_pos['S1'].get_state() == 1:
 		#	self.HA_END = self._buf_HA_END
 		#	self.HA_START = self._buf_HA_START

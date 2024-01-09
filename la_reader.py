@@ -147,7 +147,7 @@ class Reader:
 class ReadController:
 	def __init__(self,sleep_time = 0.05):
 		self.sleep_time = sleep_time
-		pass
+	
 	def _loop_read(self,shared_var,conn_details,connection_type,sleep_time = None,verbose = False):
 		if sleep_time is None:
 			sleep_time = self.sleep_time

@@ -33,7 +33,7 @@ from la_obs_img import Observatory,SkyImage,Observation
 from la_disp_man import BlitManager,DisplayManager
 from la_reader import Reader,ReadController,VideoReadController
 import logging 
-
+import la_config 	
 
 def vprint(*args,verbose = True):
 	if verbose:
@@ -49,12 +49,12 @@ if __name__ == "__main__":
 	logging.basicConfig(filename='lego_alma.log')
 	with Manager() as manager:
 		#define the connections initialize readers and vars
-		from la_config import *	
 
 		plt.style.use('dark_background')
 		sleep_time = 0.1
 		ser0_controller = ReadController(sleep_time = sleep_time)
 		ser1_controller = ReadController(sleep_time = sleep_time)
+		ble_controller = ReadController(sleep_time = sleep_time)
 		vid_controller = VideoReadController()
 		#ble_controller = ReadController()
 
@@ -67,14 +67,14 @@ if __name__ == "__main__":
 		#start processes to read the data 
 		p0 = Process(target = ser0_controller._loop_read,args = (last_measurements,ser_conn_0,'ser'),kwargs={'verbose':False})
 		p1 = Process(target = ser1_controller._loop_read,args = (last_measurements,ser_conn_1,'ser'),kwargs={'verbose':False})
+		p2 = Process(target = ble_controller._loop_read,args = (last_measurements,ble_conn,'ble')
 		pv = Process(target = vid_controller.read_vid,args  = (video_dict,))
-		#p2 = Process(target = ble_controller._loop_read,args=(last_measurements,ble_conn,'ble'))
 		p0.start()
 		p1.start()
 		pv.start()
+		p2.start()
+		print("Loading BLE, please wait...")
 		time.sleep(3)
-		#p2.start()
-		#print("Loading BLE, please wait...")
 
 		#initialize observatory
 		alma = Observatory(ant_pos_bit_file='./ant_pos.2.txt')
@@ -83,10 +83,7 @@ if __name__ == "__main__":
 		src_list = [ant_usb_id]#,'DW4F0B','DWD900']#,'DW4F0B','DW5293','DW912D','DWD900']
 		ctrl_list = [ctrl_usb_id]
 		alma.set_read_source_ids(src_list)
-		#alma.transform_query(last_measurements,['DW5293','DW4F0B','DW912D'])
-		#alma.transform_query(last_measurements,'DW4F0B')
-		#if alma.vlbi_mode == False:
-			#	p2.terminate()
+		alma.transform_query(last_measurements,['DW5293','DW4F0B','DW912D']) #let's callibrate with these i guess...
 			
 		alma.set_ant_pos(last_measurements)
 		alma.make_baselines()
@@ -101,11 +98,11 @@ if __name__ == "__main__":
 		cont.add_buttons()
 		cont.set_but_bit_dict_file("but_dict.pickle")
 		cont.load_but_bit_dict()
-		cont.set_swi_bit_list(swi_bits)
+		cont.set_swi_bit_list(la_config.swi_bits)
 		cont.get_state(last_measurements)	
 
 		#initialize the observation
-		obs = Observation(alma,imgobj,cont,obs_frequency = 200*u.GHz,var_dic = var_dic)
+		obs = Observation(alma,imgobj,cont,obs_frequency = 200*u.GHz,var_dic = la_config.var_dic)
 		obs.calc_el_curve()
 		obs.make_uv_coverage()
 		obs.grid_uv_coverage()
@@ -127,7 +124,7 @@ if __name__ == "__main__":
 		dm.init_dbe_plot(pixel_size = pixel_size)
 		dm.init_dim_plot(pixel_size = pixel_size)
 		dm.init_mft_plot(inv_pixel_size = inv_pixel_size)
-		dm.init_ind_plot(var_dic,obs)
+		dm.init_ind_plot(la_config.var_dic,obs)
 		dm.setup_blit_manager()
 		#dm.update_ant_plot((alma.ant_pos_EW,alma.ant_pos_NS))
 		#dm.update_ant_proj_plot((alma.ant_pos_EW,alma.ant_pos_NS))
@@ -170,7 +167,7 @@ if __name__ == "__main__":
 
 				dm.update_dim_plot(obs.dirty_image,pixel_size = pixel_size)
 				dm.update_mft_plot(obs.uv_fft_sampled,inv_pixel_size = inv_pixel_size)
-				dm.update_ind_plot(var_dic,obs)
+				dm.update_ind_plot(la_config.var_dic,obs)
 				dm.update_blit_manager()
 				#plt.scatter(alma.ant_pos_EW,alma.ant_pos_NS,c='blue')
 				#obs = Observation(almaobj,imgobj)
