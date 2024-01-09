@@ -60,21 +60,21 @@ if __name__ == "__main__":
 
 		last_measurements = manager.dict()
 		video_dict = manager.dict()
-		ser_conn_0 = {'path':'/dev/ttyUSB0','baud':19200,'timeout':1,'parity':serial.PARITY_NONE,'rtscts':False}
-		ser_conn_1 = {'path':'/dev/ttyUSB1','baud':19200,'timeout':1,'parity':serial.PARITY_NONE,'rtscts':False}
+		ser_conn_0 = {'path':'/dev/ttyUSB0','baud':19200,'timeout':1,'parity':serial.PARITY_NONE,'rtscts': False}
+		ser_conn_1 = {'path':'/dev/ttyUSB1','baud':19200,'timeout':1,'parity':serial.PARITY_NONE,'rtscts': False}
 		ble_conn = 0x66ce
 
 		#start processes to read the data 
-		p0 = Process(target = ser0_controller._loop_read,args = (last_measurements,ser_conn_0,'ser'),kwargs={'verbose':False})
-		p1 = Process(target = ser1_controller._loop_read,args = (last_measurements,ser_conn_1,'ser'),kwargs={'verbose':False})
-		p2 = Process(target = ble_controller._loop_read,args = (last_measurements,ble_conn,'ble')
+		p0 = Process(target = ser0_controller._loop_read,args = (last_measurements,ser_conn_0,'ser'),kwargs={'verbose': False})
+		p1 = Process(target = ser1_controller._loop_read,args = (last_measurements,ser_conn_1,'ser'),kwargs={'verbose': False})
+		p2 = Process(target = ble_controller._loop_read,args = (last_measurements,ble_conn,'ble'))
 		pv = Process(target = vid_controller.read_vid,args  = (video_dict,))
 		p0.start()
 		p1.start()
 		pv.start()
 		p2.start()
 		print("Loading BLE, please wait...")
-		time.sleep(3)
+		time.sleep(5)
 
 		#initialize observatory
 		alma = Observatory(ant_pos_bit_file='./ant_pos.2.txt')
@@ -150,7 +150,10 @@ if __name__ == "__main__":
 				pixel_size = obs.SkyImage.pixel_size
 				#print(f"pixel_size = {pixel_size}")
 				inv_pixel_size = (1./pixel_size).to(1./u.radian)
-
+				#print("Main loop data:")
+				#print(last_measurements)
+				#print((obs.Observatory.ant_pos_EW,obs.Observatory.ant_pos_NS))
+				#print("end main loop data")
 				#update plots
 
 				dm.update_ant_plot((obs.Observatory.ant_pos_EW,obs.Observatory.ant_pos_NS))
@@ -192,7 +195,7 @@ if __name__ == "__main__":
 
 				p0.terminate()
 				p1.terminate()
-				#p2.terminate()
+				p2.terminate()
 				pv.terminate()
 				plt.close()
 				sys.exit()
@@ -202,6 +205,7 @@ if __name__ == "__main__":
 					os._exit(130)
 		p0.terminate()
 		p1.terminate()
+		p2.terminate()
 		pv.terminate()
 
 

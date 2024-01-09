@@ -7,6 +7,10 @@ from astropy.io import ascii
 import traceback
 import logging
 from scipy.ndimage import gaussian_filter
+from tqdm import tqdm
+from time import sleep
+import pickle
+
 class Observatory:
 	def __init__(self,name="ALMA",latitude =-23.0229*u.deg,longitude = -67.755 * u.deg,ant_pos_EW =[],ant_pos_NS =[],ant_pos_bit_file='./ant_pos.2.txt'):
 		""" 
@@ -58,6 +62,7 @@ class Observatory:
 		self.ant_pos_Y  = self.ant_pos_EW
 		self.ant_pos_Z = self.ant_pos_NS * np.cos(latitude)
 		self.ant_pos_bit_file = ant_pos_bit_file
+		self.scale_factor = 2
 #	def set_ant_pos(self,EW,NS):
 #		self.ant_pos_EW = EW
 #		self.ant_pos_NS = NS
@@ -76,6 +81,7 @@ class Observatory:
 		---------------
 		None
 		"""
+		self.scale_factor = scale_factor
 		if ant_pos_bit_file == None:
 			ant_file_data = ascii.read(self.ant_pos_bit_file)
 			self._ant_bit_dict = dict(zip(ant_file_data['bit'],
@@ -124,12 +130,12 @@ class Observatory:
 					#print(np.array([np.array(self._ant_bit_dict[bit]) for bit in bit_array]).T,"##################################")
 					pos = np.hstack([pos,np.array([np.array(self._ant_bit_dict[bit]) for bit in bit_array]).T])
 			if self.vlbi_mode is True: #only if vlbi mode look for ble devices
-				for src in self.last_measurements: #since ble devices can be dynamic on off don't check the source list but the last meas.
+				for src in last_measurements: #since ble devices can be dynamic on off don't check the source list but the last meas.
 					if src.startswith('DW'):
 						try:
 							pos = np.hstack([pos,self.apply_transform(last_measurements[src][:-1])[np.newaxis].T])
 						except Exception as e:
-							print("set_ant_pos",e)
+							print("set_ant_pos Error!",e)
 							pass
 		except Exception as e:
 			print("error",e,traceback.format_exc())
@@ -175,7 +181,7 @@ class Observatory:
 						
 			temp_vec = np.median(temp_vec,axis=0)
 			X_vecs.append(temp_vec)
-		print(X_vecs)
+		#print(X_vecs)
 		self.X_vecs = X_vecs
 	def set_3pos_tag_all(self,last_measurements,tag_ids):
 		"""Description
@@ -205,20 +211,20 @@ class Observatory:
 		data_in = None
 		with tqdm(total = 40,desc="Collecting position data", unit="tag positions") as pbar:
 			while len(temp_vec) < 40:
-				sleep(0.5)
+				sleep(0.2)
 				try:	
 					data_in = np.array([last_measurements[tag_id][:-1] for tag_id in tag_ids])
 					if data_in is not None and len(data_in) == 3:
-						print(data_in)
+						#print(data_in)
 						temp_vec.append(data_in)
 						pbar.update(1)
 				except KeyError as e:
 					pass
 					
 		temp_vec = np.median(temp_vec,axis=0)
-		print("shape of vec",temp_vec.shape)
+		#print("shape of vec",temp_vec.shape)
 		X_vecs = temp_vec
-		print(X_vecs)
+		#print(X_vecs)
 		self.X_vecs = X_vecs
 		return X_vecs
 
@@ -248,8 +254,8 @@ class Observatory:
 			X12 = np.array([x1,x2]).T
 			X23 = np.array([x2,x3]).T
 			#these will need to be changed, based on old values, hard coded bcs it's easy and shouldn't matter...
-			Y12 = np.array([[-52.5,-32.0],[53.0,-48.5]]).T
-			Y23 = np.array([[53,-48.5],[3.5,10.0]]).T
+			Y12 = np.array([[-109.,-108.],[108.,-107.]]).T/2 * self.scale_factor
+			Y23 = np.array([[108,-107.],[106,108]]).T/2 * self.scale_factor
 			A = np.matmul((Y12-Y23),np.linalg.inv(X12-X23))
 			B = Y12 - np.matmul(A,X12)
 			self.A=A

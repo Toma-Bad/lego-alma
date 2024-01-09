@@ -1,0 +1,417 @@
+WARNING:decawave_ble:Retrying decawave_ble.get_decawave_scan_entries in 0.05 seconds as it raised BTLEManagementError: Failed to execute management command 'scanend' (code: 11, error: Rejected).
+WARNING:decawave_ble:Retrying decawave_ble.get_decawave_scan_entries in 0.1 seconds as it raised BTLEManagementError: Failed to execute management command 'scanend' (code: 11, error: Rejected).
+WARNING:decawave_ble:Retrying decawave_ble.get_decawave_scan_entries in 0.05 seconds as it raised BTLEManagementError: Failed to execute management command 'scanend' (code: 11, error: Rejected).
+WARNING:decawave_ble:Retrying decawave_ble.get_decawave_scan_entries in 0.1 seconds as it raised BTLEManagementError: Failed to execute management command 'scanend' (code: 11, error: Rejected).
+WARNING:decawave_ble:Retrying decawave_ble.get_decawave_scan_entries in 0.05 seconds as it raised BTLEManagementError: Failed to execute management command 'scanend' (code: 11, error: Rejected).
+WARNING:decawave_ble:Retrying decawave_ble.get_decawave_scan_entries in 0.05 seconds as it raised BTLEManagementError: Failed to execute management command 'scanend' (code: 11, error: Rejected).
+WARNING:decawave_ble:Retrying decawave_ble.get_decawave_scan_entries in 0.05 seconds as it raised BTLEManagementError: Failed to execute management command 'scanend' (code: 11, error: Rejected).
+WARNING:decawave_ble:Retrying decawave_ble.get_decawave_scan_entries in 0.05 seconds as it raised BTLEManagementError: Failed to execute management command 'scanend' (code: 11, error: Rejected).
+WARNING:decawave_ble:Retrying decawave_ble.get_decawave_scan_entries in 0.1 seconds as it raised BTLEManagementError: Failed to execute management command 'scanend' (code: 11, error: Rejected).
+WARNING:decawave_ble:Retrying decawave_ble.get_decawave_scan_entries in 0.05 seconds as it raised BTLEManagementError: Failed to execute management command 'scanend' (code: 11, error: Rejected).
+WARNING:decawave_ble:Retrying decawave_ble.get_decawave_scan_entries in 0.1 seconds as it raised BTLEManagementError: Failed to execute management command 'scanend' (code: 11, error: Rejected).
+WARNING:decawave_ble:Retrying decawave_ble.get_decawave_peripheral in 0.05 seconds as it raised BTLEDisconnectError: Failed to connect to peripheral fd:0a:cb:38:03:13, addr type: public.
+WARNING:decawave_ble:Retrying decawave_ble.get_decawave_peripheral in 0.05 seconds as it raised BTLEDisconnectError: Failed to connect to peripheral ee:af:78:9a:d2:e6, addr type: public.
+WARNING:decawave_ble:Retrying decawave_ble.get_decawave_peripheral in 0.1 seconds as it raised BTLEDisconnectError: Failed to connect to peripheral ee:af:78:9a:d2:e6, addr type: public.
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised ValueError: Distance count byte indicated that 4 distance values would follow so expected 28 bytes but only 21 bytes follow.
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised ValueError: Distance count byte indicated that 4 distance values would follow so expected 28 bytes but only 21 bytes follow.
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised ValueError: Distance count byte indicated that 4 distance values would follow so expected 28 bytes but only 21 bytes follow.
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEDisconnectError: Device disconnected.
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_decawave_scan_entries in 0.05 seconds as it raised BTLEDisconnectError: Device disconnected.
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised ValueError: Distance count byte indicated that 4 distance values would follow so expected 28 bytes but only 21 bytes follow.
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEDisconnectError: Device disconnected.
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEDisconnectError: Device disconnected.
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEDisconnectError: Device disconnected.
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_decawave_scan_entries in 0.05 seconds as it raised BTLEDisconnectError: Device disconnected.
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised ValueError: Distance count byte indicated that 4 distance values would follow so expected 28 bytes but only 21 bytes follow.
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEDisconnectError: Device disconnected.
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEDisconnectError: Device disconnected.
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEDisconnectError: Device disconnected.
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEDisconnectError: Device disconnected.
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_decawave_scan_entries in 0.05 seconds as it raised BTLEDisconnectError: Device disconnected.
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised ValueError: Distance count byte indicated that 4 distance values would follow so expected 28 bytes but only 21 bytes follow.
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised ValueError: Distance count byte indicated that 4 distance values would follow so expected 28 bytes but only 21 bytes follow.
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised ValueError: Distance count byte indicated that 4 distance values would follow so expected 28 bytes but only 21 bytes follow.
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised ValueError: Distance count byte indicated that 4 distance values would follow so expected 28 bytes but only 21 bytes follow.
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised ValueError: Distance count byte indicated that 4 distance values would follow so expected 28 bytes but only 21 bytes follow.
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEDisconnectError: Device disconnected.
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEDisconnectError: Device disconnected.
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEDisconnectError: Device disconnected.
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEDisconnectError: Device disconnected.
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised ValueError: Distance count byte indicated that 4 distance values would follow so expected 28 bytes but only 21 bytes follow.
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised ValueError: Distance count byte indicated that 4 distance values would follow so expected 28 bytes but only 21 bytes follow.
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised ValueError: Distance count byte indicated that 4 distance values would follow so expected 28 bytes but only 21 bytes follow.
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised ValueError: Distance count byte indicated that 4 distance values would follow so expected 28 bytes but only 21 bytes follow.
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised ValueError: Distance count byte indicated that 4 distance values would follow so expected 28 bytes but only 21 bytes follow.
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEDisconnectError: Device disconnected.
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEDisconnectError: Device disconnected.
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEDisconnectError: Device disconnected.
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEDisconnectError: Device disconnected.
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEDisconnectError: Device disconnected.
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised ValueError: Distance count byte indicated that 4 distance values would follow so expected 28 bytes but only 21 bytes follow.
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised ValueError: Distance count byte indicated that 4 distance values would follow so expected 28 bytes but only 21 bytes follow.
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised ValueError: Distance count byte indicated that 4 distance values would follow so expected 28 bytes but only 21 bytes follow.
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised ValueError: Distance count byte indicated that 4 distance values would follow so expected 28 bytes but only 8 bytes follow.
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised ValueError: Distance count byte indicated that 4 distance values would follow so expected 28 bytes but only 21 bytes follow.
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised ValueError: Distance count byte indicated that 4 distance values would follow so expected 28 bytes but only 21 bytes follow.
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised ValueError: Distance count byte indicated that 4 distance values would follow so expected 28 bytes but only 21 bytes follow.
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEDisconnectError: Device disconnected.
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEDisconnectError: Device disconnected.
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEDisconnectError: Device disconnected.
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEDisconnectError: Device disconnected.
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised ValueError: Distance count byte indicated that 4 distance values would follow so expected 28 bytes but only 21 bytes follow.
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised ValueError: Distance count byte indicated that 4 distance values would follow so expected 28 bytes but only 8 bytes follow.
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised ValueError: Distance count byte indicated that 4 distance values would follow so expected 28 bytes but only 21 bytes follow.
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised ValueError: Distance count byte indicated that 4 distance values would follow so expected 28 bytes but only 21 bytes follow.
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEDisconnectError: Device disconnected.
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEDisconnectError: Device disconnected.
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEDisconnectError: Device disconnected.
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEDisconnectError: Device disconnected.
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised ValueError: Distance count byte indicated that 4 distance values would follow so expected 28 bytes but only 21 bytes follow.
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised ValueError: Distance count byte indicated that 4 distance values would follow so expected 28 bytes but only 21 bytes follow.
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEDisconnectError: Device disconnected.
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEDisconnectError: Device disconnected.
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEDisconnectError: Device disconnected.
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEDisconnectError: Device disconnected.
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised ValueError: Distance count byte indicated that 4 distance values would follow so expected 28 bytes but only 21 bytes follow.
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised ValueError: Distance count byte indicated that 4 distance values would follow so expected 28 bytes but only 21 bytes follow.
+WARNING:decawave_ble:Retrying decawave_ble.get_decawave_scan_entries in 0.05 seconds as it raised BTLEDisconnectError: Device disconnected.
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEDisconnectError: Device disconnected.
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEDisconnectError: Device disconnected.
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEDisconnectError: Device disconnected.
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEDisconnectError: Device disconnected.
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised ValueError: Distance count byte indicated that 4 distance values would follow so expected 28 bytes but only 21 bytes follow.
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised ValueError: Distance count byte indicated that 4 distance values would follow so expected 28 bytes but only 21 bytes follow.
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised ValueError: Distance count byte indicated that 4 distance values would follow so expected 28 bytes but only 21 bytes follow.
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEDisconnectError: Device disconnected.
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEDisconnectError: Device disconnected.
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEDisconnectError: Device disconnected.
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.05 seconds as it raised BTLEDisconnectError: Device disconnected.
+WARNING:decawave_ble:Retrying decawave_ble.get_location_data_from_peripheral in 0.1 seconds as it raised BTLEInternalError: Helper not started (did you call connect()?).

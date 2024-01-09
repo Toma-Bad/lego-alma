@@ -5,7 +5,7 @@ import glob
 from serial.tools.list_ports import comports
 import numpy as np
 import cv2
-
+import tenacity
 
 class VideoReadController:
 	def __init__(self,resolution = (480,480)):
@@ -72,9 +72,8 @@ class Reader:
 			#		peripherals_anchor[key] = decawave_peripheral
 			#else:
 			#	logging.warning("Decawave devices found from network ID: {}, being disregarded".format(network_id))
+		print("ble connection complete!################")
 		print(devices,devices_tag,peripherals_tag)
-			
-
 		self.ble_conn_dict={'networdk_id':net_id,'device_list':devices_tag,'peripherals_tag':peripherals_tag}
 	def scan_ble_conn(self):
 		
