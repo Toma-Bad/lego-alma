@@ -469,16 +469,13 @@ class DisplayManager:
 
 		#print(scale_plot_factor)	
 		#print("HRANGLE: ",hrangle)
-		if hrangle > 0:
+		if hrangle >=  0:
 			self._ln_arr[ln_ind].set_xdata(yy_antpos_proj * scale_plot_factor)
 			self._ln_arr[ln_ind].set_ydata(xx_antpos_proj * scale_plot_factor)
 		if hrangle < 0:
 			self._ln_arr[ln_ind].set_xdata( - yy_antpos_proj * scale_plot_factor)
 			self._ln_arr[ln_ind].set_ydata( - xx_antpos_proj * scale_plot_factor)
-		if hrangle == 0:
-			self._ln_arr[ln_ind].set_xdata(xx_antpos_proj * scale_plot_factor)
-			self._ln_arr[ln_ind].set_ydata(yy_antpos_proj * scale_plot_factor)
-		
+			
 		#self._blit_manager_list[ln_ind].update()
 
 	def update_img_plot(self,data,row = 0, col = 1,pixel_size = 0.3*u.arcsec):
