@@ -528,6 +528,7 @@ class Observation:
 		self.var_dic = var_dic #dictionary controlling what values are assigned to variables by button position
 		self.rot_varname = None #idk
 		self.rot_value = None #whatever
+		self.RA_elev = 90 #elevation at mid obs degrees to be calculated
 	def set_read_source_ids(self,src_list):
 		"""Set which USB connection will be used for reading the commands (control) for the observation parameters
 		"""
@@ -630,7 +631,12 @@ class Observation:
 		"""Calculate elevation above the horizon, given Observatory position and SkyImage (i.e. object) declimnation. 
 		Store in array HA_arr only the HA values to which correspond elevation values, above the lower elevation limit EL_LIMIT in degrees"""
 		self.HA_arr = np.linspace(self.HA_START,self.HA_END,self.N_samples)
-		elev = np.degrees((np.sin(self.Observatory.latitude) * np.sin(self.SkyImage.declination) + np.cos(self.Observatory.latitude) * np.cos(self.SkyImage.declination) * np.cos(self.HA_arr))*u.radian) 
+		elev = np.degrees((np.sin(self.Observatory.latitude)*np.sin(self.SkyImage.declination) 
+			+ np.cos(self.Observatory.latitude)*np.cos(self.SkyImage.declination)*np.cos(self.HA_arr))*u.radian) 
+		#elevation at mid obs
+		self.RA_elev = np.degrees((np.sin(self.Observatory.latitude)*np.sin(self.SkyImage.declination) 
+			+ np.cos(self.Observatory.latitude)*np.cos(self.SkyImage.declination)*np.cos((self.HA_START + self.HA_END)/2))*u.radian) 
+
 		self.HA_arr = self.HA_arr[elev.to(u.deg) > self.EL_LIMIT]
 		self.cos_ha = np.cos(self.HA_arr)
 		self.sin_ha = np.sin(self.HA_arr)
@@ -645,7 +651,9 @@ class Observation:
 		if len(self.Observatory.ant_pos_X) > 1:
 			self.U = (np.array([self.Observatory.BX.value * sinha + self.Observatory.BY.value * cosha for sinha,cosha in self.sin_cos_ha]) * self.Observatory.BX.unit /  self.obs_lam).decompose() *1./u.radian
 
-			self.V = (np.array([-self.Observatory.BX.value * np.sin(self.SkyImage.declination) * cosha + self.Observatory.BY.value * np.sin(self.SkyImage.declination) * sinha + self.Observatory.BZ.value*np.cos(self.SkyImage.declination) for sinha,cosha in self.sin_cos_ha]) * self.Observatory.BX.unit / self.obs_lam).decompose() *1./u.radian
+			self.V = (np.array([-self.Observatory.BX.value * np.sin(self.SkyImage.declination) * cosha 
+				+ self.Observatory.BY.value * np.sin(self.SkyImage.declination) * sinha 
+				+ self.Observatory.BZ.value*np.cos(self.SkyImage.declination) for sinha,cosha in self.sin_cos_ha]) * self.Observatory.BY.unit / self.obs_lam).decompose() *1./u.radian
 		else:
 			self.U = np.array([0])
 			self.V = np.array([0])
