@@ -50,6 +50,7 @@ if __name__ == "__main__":
 	with Manager() as manager:
 		#define the connections initialize readers and vars
 
+		print("Starting")
 		plt.style.use('dark_background')
 		sleep_time = 0.1
 		ser0_controller = ReadController(sleep_time = sleep_time)
@@ -72,10 +73,7 @@ if __name__ == "__main__":
 		p0.start()
 		p1.start()
 		pv.start()
-		p2.start()
-		print("Loading BLE, please wait...")
-		time.sleep(5)
-
+		time.sleep(4)	
 		#initialize observatory
 		alma = Observatory(ant_pos_bit_file='./ant_pos.2.txt')
 		alma.load_ant_pos_bit_file()
@@ -83,8 +81,18 @@ if __name__ == "__main__":
 		src_list = [ant_usb_id]#,'DW4F0B','DWD900']#,'DW4F0B','DW5293','DW912D','DWD900']
 		ctrl_list = [ctrl_usb_id]
 		alma.set_read_source_ids(src_list)
-		alma.transform_query(last_measurements,['DW5293','DW4F0B','DW912D']) #let's callibrate with these i guess...
-			
+		use_vlbi = input("Use Ultra Wideband Devices for VLBI simulation? (y/n)")
+		alma.vlbi_mode = False
+		if use_vlbi == "y":
+			p2.start()
+			print("Loading devices, please wait...")
+			time.sleep(5)
+			if alma.transform_query(last_measurements,['DW5293','DW4F0B','DW912D']) is False: #let's callibrate with these i guess...
+				p2.terminate()
+				for _s in last_measurements:
+					if _s.startswith('DW'):
+						del last_measurement[_s]
+
 		alma.set_ant_pos(last_measurements)
 		alma.make_baselines()
 		
@@ -157,10 +165,9 @@ if __name__ == "__main__":
 				#update plots
 
 				dm.update_ant_plot((obs.Observatory.ant_pos_EW,obs.Observatory.ant_pos_NS))
-				dm.update_ant_proj_plot((obs.Observatory.ant_pos_EW,obs.Observatory.ant_pos_NS),
-						obs.Observatory.latitude,
-						obs.HA_START + abs(obs.HA_END - obs.HA_START)/2,
-						obs.SkyImage.declination)
+				dm.update_ant_proj_plot((obs.Observatory.ant_pos_EW, obs.Observatory.ant_pos_NS),
+						(obs.HA_START + obs.HA_END)/2,
+						obs.RA_elev)
 
 				dm.update_img_plot(obs.SkyImage.data,pixel_size = pixel_size)
 				dm.update_fft_plot(obs.SkyImage.fft_data)
@@ -180,7 +187,7 @@ if __name__ == "__main__":
 			except KeyboardInterrupt: #to exit
 				p0.terminate()
 				p1.terminate()
-				#p2.terminate()
+				p2.terminate()
 				pv.terminate()
 				plt.close()
 				sys.exit()

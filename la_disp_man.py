@@ -440,7 +440,7 @@ class DisplayManager:
 		self._annot_txt[ln_ind].set_text("{:.0f} m".format(scale_line_len))
 
 		#self._blit_manager_list[0].update()
-	def update_ant_proj_plot(self,data,observatory_latitude,hrangle,dec,row = 1, col = 0):
+	def update_ant_proj_plot(self,data,hrangle,elevation,row = 1, col = 0):
 		"""updates the projected antenna positions
 		"""
 		maxoffset = self.maxoffset
@@ -452,29 +452,15 @@ class DisplayManager:
 			yy = data[1]
 			#print("normal",xx,yy)
 		else:
-			xx = data[0] #- np.mean(data[0])
-			yy = data[1] #- np.mean(data[1])
-
+			xx = data[0] - np.mean(data[0])
+			yy = data[1] - np.mean(data[1])
 			#print("scaled",xx,yy)
-			scale_plot_factor = maxoffset / np.max(np.abs(data))#(np.abs(np.max(data[0]) - np.min(data[0])),np.abs(np.max(data[1]) - np.min(data[1]))))
-		xx_earth_cen = - yy*np.sin(observatory_latitude).value
-		yy_earth_cen = xx
-		zz_earth_cen = yy * np.cos(observatory_latitude).value
-		xx_antpos_proj = - xx_earth_cen * np.sin(hrangle).value \
-				 + yy_earth_cen * np.cos(hrangle).value
-		yy_antpos_proj = - xx_earth_cen * np.sin(dec).value*np.cos(hrangle).value  \
-				 + yy_earth_cen * np.sin(dec).value*np.sin(hrangle).value \
-				 + zz_earth_cen * np.cos(dec).value
+			scale_plot_factor =  2*maxoffset / np.max((np.abs(np.max(data[0]) - np.min(data[0])),np.abs(np.max(data[1]) - np.min(data[1]))))
 
-
-		#print(scale_plot_factor)	
-		#print("HRANGLE: ",hrangle)
-		if hrangle >=  0:
-			self._ln_arr[ln_ind].set_xdata(yy_antpos_proj * scale_plot_factor)
-			self._ln_arr[ln_ind].set_ydata(xx_antpos_proj * scale_plot_factor)
-		if hrangle < 0:
-			self._ln_arr[ln_ind].set_xdata( - yy_antpos_proj * scale_plot_factor)
-			self._ln_arr[ln_ind].set_ydata( - xx_antpos_proj * scale_plot_factor)
+		xx_antpos_proj = xx * np.cos(hrangle) 
+		yy_antpos_proj = yy * np.abs(np.sin(elevation))
+		self._ln_arr[ln_ind].set_xdata(xx_antpos_proj * scale_plot_factor)
+		self._ln_arr[ln_ind].set_ydata(yy_antpos_proj * scale_plot_factor)
 			
 		#self._blit_manager_list[ln_ind].update()
 

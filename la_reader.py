@@ -55,7 +55,7 @@ class Reader:
 		devices = decawave_ble.scan_for_decawave_devices()
 		devices_anchor, devices_tag, peripherals_anchor, peripherals_tag = dict(), dict(), dict(), dict()
 		decawave_ble.retry_initial_wait = 0.1  # seconds
-		decawave_ble.retry_num_attempts = 6
+		decawave_ble.retry_num_attempts = 3
 
 		for key, value in devices.items():
 			decawave_peripheral = decawave_ble.get_decawave_peripheral(value)
@@ -79,8 +79,8 @@ class Reader:
 		
 		result = {}
 		network_id,devices_tag,peripherals_tag = self.ble_conn_dict.values()
-		#print(devices_tag)
-
+		print("scanning ble:",peripherals_tag)
+		retry = 0
 		for key,decawave_peripheral in peripherals_tag.items():
 			try:
 				location_data = decawave_ble.get_location_data_from_peripheral(decawave_peripheral)
@@ -88,10 +88,14 @@ class Reader:
 				y = location_data["position_data"]['y_position']
 				z = location_data["position_data"]['z_position']
 				result[key] = np.array([x,y,z])
+				retry = 0
+				print("data read")
 			except tenacity.RetryError:
+				retry += 1
+				print("retry_error")
 				decawave_peripheral = decawave_ble.get_decawave_peripheral(devices_tag[key])
 				peripherals_tag[key] = decawave_peripheral
-		#print(result)
+		print(f"done scanning ble:{result}")
 		return result
 	def disconnect_ble(self):
 		peripherals_tag = self.ble_conn_dict['peripherals_tag']
@@ -167,11 +171,14 @@ class ReadController:
 			reader.disconnect_ser()
 		if connection_type == 'ble':
 			reader = Reader()
+			print("connecting")
 			reader.create_ble_conn(conn_details)
 			while True:
 				sleep(sleep_time)
 				try:
+					print("ble loops")
 					for key,value in reader.scan_ble_conn().items():
+						print(shared_var)
 						shared_var[key]=value 
 					if verbose:
 						print(shared_var)

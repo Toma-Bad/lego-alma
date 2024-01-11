@@ -305,9 +305,11 @@ class Observatory:
 				self.vlbi_mode = False
 		elif ans == "n":
 			self.vlbi_mode = False
+			return False
 		elif ans == "q":
 			self.vlbi_mode = False
 			#quit()
+		return self.vlbi_mode
 	def apply_transform(self,x,A=None,b=None):
 		"""Description
 		==============
@@ -528,7 +530,7 @@ class Observation:
 		self.var_dic = var_dic #dictionary controlling what values are assigned to variables by button position
 		self.rot_varname = None #idk
 		self.rot_value = None #whatever
-		self.RA_elev = 90 #elevation at mid obs degrees to be calculated
+		self.RA_elev = 90 *u.deg#elevation at mid obs degrees to be calculated
 	def set_read_source_ids(self,src_list):
 		"""Set which USB connection will be used for reading the commands (control) for the observation parameters
 		"""
