@@ -1,0 +1,10 @@
+astropy==5.1
+decawave_ble==0.9.7
+matplotlib==3.5.2
+numpy==1.21.5
+Pillow==9.2.0
+Pillow==10.2.0
+pyserial==3.5
+scipy==1.9.1
+tenacity==8.2.3
+tqdm==4.64.1.dev14+g687f5e4
