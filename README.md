@@ -34,7 +34,7 @@ when prompted about using VLBI/ Ultra Wideband Receivers.
 
 ## Using the Ulra Wideband Receivers with lego-alma to simulte VLBI observations
 
-Setup the ultrawideband receivers, following the instructions at [Decawave](file:///media/toma/5c26ab1c-6951-4097-9f57-0babbba969a7/drop/box/Dropbox/work/MDEK1001%20Quick%20Start%20Guide.pdf)
+Setup the ultrawideband receivers, following the instructions at [Decawave](https://www.qorvo.com/products/d/da007996)
 and using the [Decawave RTLS Android app](https://apkcombo.com/decawave-drtls-manager-r1/com.decawave.argomanager/). 
 
 If using the original devices, make sure to set them accoring to the designation on their casing (tag vs anchor). When prompted about the use of these 
