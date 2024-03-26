@@ -6,7 +6,7 @@ developed by the Nordic ARC Node. This version, although inspired bny the fVRI p
 of LEGO ALMA, which requires a faster update but less initial customization.
 
 ## Installation
-Copy the code on your drive. The required packages are Description
+Copy the code on your drive. The required packages are listed in the requirements.txt file.
 
-
-Software that controls and runs the Lego ALMA 2 device
+## Setup
+The dictionary controlling the button setup can be modified in the `la_config.py` file.
